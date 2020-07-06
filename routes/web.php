@@ -25,3 +25,8 @@ Route::get('/admin/guru', function(){
 Route::get('/guru', function(){
 	return view('guru');
 });
+Route::get('/guru/datasiswa', function(){
+	return view('datasiswa');
+});
+Route::get('/guru/datasoal', function(){return view('datasoal');});
+Route::get('/guru/laporannilai', function(){return view('datanilai');});

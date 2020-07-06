@@ -141,9 +141,6 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <a href="#" class="list-group-item link-2">Profile</a>
-                                <a href="#" class="list-group-item link-2 d-flex">Followers <span
-                                        class="text-muted ml-auto">214</span></a>
-                                <a href="#" class="list-group-item link-2 sidebar-open" data-sidebar-target="#settings">Settings</a>
                                 <a href="#" class="list-group-item text-danger">Logout</a>
                             </ul>
                         </div>

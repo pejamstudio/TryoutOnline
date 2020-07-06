@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from borderless.laborasyon.com/dark/dashboard-one.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Apr 2020 17:40:50 GMT -->
+<!-- Mirrored from borderless.laborasyon.com/dark/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Apr 2020 17:43:22 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,20 +12,15 @@
     <link rel="stylesheet" href="../assets/vendors/bundle.css" type="text/css">
     <!-- end::global styles -->
 
-    <!-- begin::datepicker -->
-    <link rel="stylesheet" href="../assets/vendors/datepicker/daterangepicker.css">
-    <!-- begin::datepicker -->
-
-    <!-- begin::vmap -->
-    <link rel="stylesheet" href="../assets/vendors/vmap/jqvmap.min.css">
-    <!-- begin::vmap -->
+    <!-- begin::dataTable -->
+    <link rel="stylesheet" href="../assets/vendors/dataTable/responsive.bootstrap.min.css" type="text/css">
+    <!-- end::dataTable -->
 
     <!-- begin::custom styles -->
     <link rel="stylesheet" href="../assets/css/app.min.css" type="text/css">
     <link rel="stylesheet" href="../assets/css/custom.css" type="text/css">
     <link rel="stylesheet" href="../assets/css/themify-icons.css" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css">
-    <!-- end::custom styles -->
 
 </head>
 <body class="dark">
@@ -38,13 +33,12 @@
 <!-- end::page loader -->
 
 
-
 <!-- begin::side menu -->
 <div class="side-menu">
     <div class='side-menu-body'>
         <ul>
             <li class="side-menu-divider m-t-0"></li>
-            <li class="open">
+            <li >
                 <a href="/guru">
                     <i class="icon fa fa-globe"></i>
                     <span>Dashboard</span>
@@ -64,10 +58,11 @@
                     <i class="icon ti-server"></i>
                     <span>Data Soal</span>
                 </a>
+                
             </li>
             
             <li class="side-menu-divider m-t-10">Report</li>
-            <li>
+            <li class="open">
                 <a href="/guru/laporannilai">
                     <i class="icon ti-clipboard"></i> 
                     <span>Nilai</span> 
@@ -93,13 +88,7 @@
 
         <div class="header-body">
             <form class="search">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            
-                        </div>
-                    </div>
-                </div>
+                
             </form>
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -107,7 +96,6 @@
                         <i class="fa fa-search"></i>
                     </a>
                 </li>
-
                 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" data-toggle="dropdown">
@@ -154,43 +142,78 @@
     <div class="container">
 
         <!-- begin::page header -->
-        <div class="page-header d-md-flex align-items-center justify-content-between">
-            <div>
-                <h3>Dashboard</h3>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                    </ol>
-                </nav>
-            </div>
-
-            <!-- ini tombol -->
-
-            <!-- <div>
-                <div class="dropdown m-r-5">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-success btn-uppercase dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                        Download Report
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="#">Pdf</a>
-                        <a class="dropdown-item" href="#">Excel</a>
-                        <a class="dropdown-item" href="#">File</a>
-                    </div>
-                </div>
-                <a href="#" class="btn btn-warning btn-uppercase">
-                    <i class="fa fa-external-link m-r-5"></i> Export
-                </a>
-            </div> -->
-
+        <div class="page-header">
+            <h3>Daftar Nilai</h3>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Nilai</a></li>
+                </ol>
+            </nav>
         </div>
         <!-- end::page header -->
 
-        
+        <div class="card">
+            <div class="card-body">
+            <div class="table-responsive">
+                <table id="example1" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Nilai</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>
+                            <span class="badge badge-primary">A</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>63</td>
+                        <td>2011/07/25</td>
+                        <td>
+                            <span class="badge badge-success">B+</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ashton Cox</td>
+                        <td>Junior Technical Author</td>
+                        <td>San Francisco</td>
+                        <td>66</td>
+                        <td>2009/01/12</td>
+                        <td>
+                            <span class="badge badge-warning">C-</span>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Nilai</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </div>
 
-
-        
 
     </div>
 
@@ -201,21 +224,12 @@
 <script src="../assets/vendors/bundle.js"></script>
 <!-- end::global scripts -->
 
-<!-- begin::chart -->
-<script src="../assets/vendors/charts/chartjs/chart.min.js"></script>
-<script src="../assets/vendors/charts/sparkline/sparkline.min.js"></script>
-<script src="../assets/vendors/circle-progress/circle-progress.min.js"></script>
-<script src="../assets/js/examples/charts.js"></script>
-<!-- end::chart -->
-
-<script src="../assets/vendors/datepicker/daterangepicker.js"></script>
-<script src="../assets/js/examples/dashboard.js"></script>
-
-<!-- begin::vamp -->
-<script src="../assets/vendors/vmap/jquery.vmap.min.js"></script>
-<script src="../assets/vendors/vmap/maps/jquery.vmap.usa.js"></script>
-<script src="../assets/js/examples/vmap.js"></script>
-<!-- end::vamp -->
+<!-- begin::dataTable -->
+<script src="../assets/vendors/dataTable/jquery.dataTables.min.js"></script>
+<script src="../assets/vendors/dataTable/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/vendors/dataTable/dataTables.responsive.min.js"></script>
+<script src="../assets/js/examples/datatable.js"></script>
+<!-- end::dataTable -->
 
 <!-- begin::custom scripts -->
 <script src="../assets/js/custom.js"></script>
@@ -224,5 +238,5 @@
 
 </body>
 
-<!-- Mirrored from borderless.laborasyon.com/dark/dashboard-one.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Apr 2020 17:41:37 GMT -->
+<!-- Mirrored from borderless.laborasyon.com/dark/data-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Apr 2020 17:43:24 GMT -->
 </html>
