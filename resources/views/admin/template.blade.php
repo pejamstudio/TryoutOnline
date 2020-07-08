@@ -53,33 +53,33 @@
                 </li>
                 
                 <li class="side-menu-divider m-t-10">Main Navigation</li>
-                <li class="{{Request::is('admin/pengguna*') == true  ? 'open' : '' }}">
+                <li class="{{Request::is('admin/pengguna*') || Request::is('pengguna*') == true  ? 'open' : '' }}">
                     <a href="#">
                         <i class="icon ti-user"></i>
                         <span>Pengguna</span>
                     </a>
                     <ul>
-                        <li><a href="{{route('admin.pengguna.guru')}}" class="{{Request::is('admin/pengguna/guru*') == true  ? 'active' : '' }}">Guru </a></li>
-                        <li><a href="{{route('admin.pengguna.siswa')}}" class="{{Request::is('admin/pengguna/siswa*') == true  ? 'active' : '' }}">Siswa </a></li>
+                        <li><a href="{{route('admin.pengguna.guru')}}" class="{{Request::is('admin/pengguna/guru*') || Request::is('pengguna/guru*')== true  ? 'active' : '' }}">Guru </a></li>
+                        <li><a href="{{route('admin.pengguna.siswa')}}" class="{{Request::is('admin/pengguna/siswa*') || Request::is('pengguna/siswa*') == true  ? 'active' : '' }}">Siswa </a></li>
                     </ul>
                 </li>
-                <li class="{{Request::is('admin/master*') == true  ? 'open' : '' }}">
+                <li class="{{Request::is('admin/master*') || Request::is('master*') == true  ? 'open' : '' }}">
                     <a href="#">
                         <i class="icon ti-server"></i>
                         <span>Data Master</span>
                     </a>
                     <ul>
-                        <li><a href="{{route('admin.master.jurusan')}}" class="{{Request::is('admin/master/jurusan*') == true  ? 'active' : '' }}">Data Jurusan </a></li>
-                        <li><a href="{{route('admin.master.kelas')}}" class="{{Request::is('admin/master/kelas*') == true  ? 'active' : '' }}">Data Kelas </a></li>
-                        <li><a href="{{route('admin.master.mapel')}}" class="{{Request::is('admin/master/mapel*') == true  ? 'active' : '' }}">Data Mata Pelajaran </a></li>
-                        <li><a href="tour.html" class="{{Request::is('master/data-soal') == true  ? 'active' : '' }}">Data Soal </a></li>
+                        <li><a href="{{route('admin.master.jurusan')}}" class="{{Request::is('admin/master/jurusan*') || Request::is('master/jurusan*') == true  ? 'active' : '' }}">Data Jurusan </a></li>
+                        <li><a href="{{route('admin.master.kelas')}}" class="{{Request::is('admin/master/kelas*') || Request::is('master/kelas*') == true  ? 'active' : '' }}">Data Kelas </a></li>
+                        <li><a href="{{route('admin.master.mapel')}}" class="{{Request::is('admin/master/mapel*') || Request::is('master/mapel*') == true  ? 'active' : '' }}">Data Mata Pelajaran </a></li>
+                        <li><a href="{{route('admin.master.soal')}}" class="{{Request::is('admin/master/soal*') || Request::is('master/soal*')== true  ? 'active' : '' }}">Data Soal </a></li>
                     </ul>
                 </li>
                 
                 <li class="side-menu-divider m-t-10">Report</li>
                 <li class="{{Request::is('nilai*') == true  ? 'open' : '' }}">
                     <a href="#">
-                        <i class="icon ti-clipboard"></i> 
+                        <i class="icon ti-clipboard"></i>
                         <span>Nilai</span> 
                     </a>
                 </li>
