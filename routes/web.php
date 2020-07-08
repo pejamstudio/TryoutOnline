@@ -17,10 +17,15 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('admin/dashboard', "AdminController@dashboard")->name('admin.dashboard');
+Route::post('/login', "LoginController@loginPost");
+
+Route::get('/logout', "LoginController@logout");
+Route::get('admin/dashboard', "LoginController@index");
 
 Route::get('admin/pengguna/guru', "AdminController@pengguna_guru")->name('admin.pengguna.guru');
 Route::get('pengguna/guru/tambah', "AdminController@tambah_guru")->name('pengguna.guru.tambah');
+Route::post('admin/tambahguru', "AdminController@tambah_guruPost");
+
 Route::get('pengguna/guru/edit', "AdminController@edit_guru")->name('pengguna.guru.edit');
 Route::get('pengguna/guru/detail', "AdminController@detail_guru")->name('pengguna.guru.detail');
 
