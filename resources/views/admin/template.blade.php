@@ -45,7 +45,7 @@
             <ul>
                 <li class="side-menu-divider m-t-0"></li>
                 <li class="{{Request::is('admin/dashboard*') == true  ? 'open' : '' }}">
-                    <a href="{{route('admin.dashboard')}}" >
+                    <a href="{{url('admin/dashboard')}}" >
                         <i class="icon fa fa-globe"></i>
                         <span>Dashboard</span>
                     </a>
@@ -142,7 +142,7 @@
                             <ul class="list-group list-group-flush">
                                 <a href="#" class="list-group-item link-2">Profile</a>
                                 <a href="#" class="list-group-item link-2 sidebar-open" data-sidebar-target="#settings">Settings</a>
-                                <a href="#" class="list-group-item text-danger">Logout</a>
+                                <a href="/logout" class="list-group-item text-danger">Logout</a>
                             </ul>
                         </div>
                     </div>
