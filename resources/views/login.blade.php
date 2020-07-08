@@ -45,7 +45,7 @@
                 <div class="form-group mb-4">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                <button class="btn btn-primary btn-lg btn-block btn-uppercase mb-4">Sign In</button>
+                <button class="btn btn-primary btn-lg btn-block btn-uppercase mb-4"><a href="{{route('admin.dashboard')}}"></a>Sign In</button>
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
