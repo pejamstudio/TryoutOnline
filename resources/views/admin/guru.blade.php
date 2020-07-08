@@ -34,7 +34,7 @@
                         <th>Jenis Kelamin</th>
                         <th>No. HP</th>
                         <th>Aksi</th>
-                        <!-- <th></th> -->
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
                                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Detail</button>
+                                        <button class="dropdown-item" type="button"><i class="ti-info mr-3"></i><a href="">Detail</a></button>
                                         <button class="dropdown-item" type="button"><i class="ti-pencil mr-3"></i>Edit</button>
                                         <button class="dropdown-item" type="button"><i class="ti-trash mr-3"></i>Hapus</button>
                                     </div>
