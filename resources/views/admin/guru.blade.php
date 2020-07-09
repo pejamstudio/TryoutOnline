@@ -34,7 +34,6 @@
                         <th>Jenis Kelamin</th>
                         <th>No. HP</th>
                         <th>Aksi</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -61,6 +60,16 @@
                         </tr>
                     @endforeach
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Nama</th>
+                        <th>NIP</th>
+                        <th>Email</th>
+                        <th>Jenis Kelamin</th>
+                        <th>No. HP</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
             </div>

@@ -91,8 +91,8 @@
 <!-- end::side menu -->
 
 <!-- begin::navbar -->
-<nav class="navbar">
-    <div class="container-fluid">
+<nav class="navbar bg-primary">
+    <div class="container-fluid ">
 
         <div class="header-logo">
             <a href="#">

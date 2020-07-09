@@ -20,7 +20,30 @@
         <!-- end::page header -->
         <div class="row">
             <div class="col-md-4">
-                
+                <div class="card">
+                    <div class="card-header bg-primary">Detail Tryout</div>
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <b>Nama Tryout</b>
+                            <p>Tryout Kimia</p>
+                        </div>
+                        <div class="form-group">
+                            <b>Deskripsi</b>
+                            <p>Ini Tryout Kimia</p>
+                        </div>
+                        <div class="form-group">
+                            <b>KKM</b>
+                            <p>70</p>
+                        </div>
+                        <div class="form-group">
+                            <b>Waktu</b>
+                            <p>60 Menit</p>
+                        </div>
+                        <a class="btn btn-primary mr-1 mt-3" href="{{route('master.soal.edit')}}">Ubah Paket Soal</a>
+                        
+                    </div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="card">
