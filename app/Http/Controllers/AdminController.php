@@ -197,4 +197,19 @@ class AdminController extends Controller
         return $admin;
     }
     
+    public function master_paketsoal(){
+        return view('admin/paketsoal');
+    }
+    public function tambah_paketsoal(){
+        return view('master/soal/tambahpaketsoal');
+    }
+    public function edit_paketsoal(){
+        return view('master/soal/editpaketsoal');
+    }
+    public function detail_paketsoal(){
+        return view('master/soal/detailpaketsoal');
+    }
+    public function paketsoal_soal(){
+
+    }
 }

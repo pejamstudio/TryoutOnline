@@ -54,3 +54,10 @@ Route::get('guru/datanilai', "GuruController@guru_datanilai")->name('master.mape
 Route::get('guru/dashboard', "GuruController@guru_dashboard")->name('master.mapel.edit');
 Route::get('guru/datasoal', "GuruController@guru_datasoal")->name('master.mapel.edit');
 Route::get('guru/datasiswa', "GuruController@guru_datasiswa")->name('master.mapel.edit');
+
+Route::get('admin/master/soal', "AdminController@master_paketsoal")->name('admin.master.soal');
+Route::get('master/soal/tambah', "AdminController@tambah_paketsoal")->name('master.soal.tambah');
+Route::get('master/soal/edit' , "AdminController@edit_paketsoal")->name('master.soal.edit');
+Route::get('master/soal/detail', "AdminController@detail_paketsoal")->name('master.soal.detail');
+Route::get('master/soal/detail/data-soal', "AdminController@paketsoal_soal")->name('master.soal.detail.datasoal');
+

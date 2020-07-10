@@ -9,11 +9,11 @@
     <title>Tryout Online</title>
 
     <!-- begin::global styles -->
-    <link rel="stylesheet" href="../assets/vendors/bundle.css" type="text/css">
+    <link rel="stylesheet" href="{{url('/assets/vendors/bundle.css')}}" type="text/css">
     <!-- end::global styles -->
 
     <!-- begin::custom styles -->
-    <link rel="stylesheet" href="../assets/css/app.min.css" type="text/css">
+    <link rel="stylesheet" href="{{url('/assets/css/app.min.css')}}" type="text/css">
     <!-- end::custom styles -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -67,11 +67,11 @@
 </div>
 
 <!-- begin::global scripts -->
-<script src="../assets/vendors/bundle.js"></script>
+<script src="{{url('/assets/vendors/bundle.js')}}"></script>
 <!-- end::global scripts -->
 
 <!-- begin::custom scripts -->
-<script src="../assets/js/borderless.min.js"></script>
+<script src="{{url('/assets/js/borderless.min.js')}}"></script>
 <!-- end::custom scripts -->
 
 </body>
