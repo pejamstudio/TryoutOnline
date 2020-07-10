@@ -17,3 +17,5 @@ use App\user;
 Route::get('read', function (){
 	return user::all();
 });
+
+Route::get('load_guru', "ApiController@read_guru");

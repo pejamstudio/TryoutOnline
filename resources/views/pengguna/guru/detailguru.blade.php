@@ -23,29 +23,45 @@
                             <div class="row">
                                 <div class="col-md-5 text-center">
                                     <figure class="avatar" style="width: 80%; height: auto;">
-                                        <img src="{{url('/assets/media/image/avatar.jpg')}}" class="rounded">
+                                        <img src="{{url('/assets/images/foto/guru/'.$data->foto)}}" class="rounded">
                                     </figure>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <b>Nama</b>
-                                        <p>Iqbalul Hidayat</p>
+                                        <p>{{$data->nama}}</p>
                                     </div>
                                     <div class="form-group">
                                         <b>NIP</b>
-                                        <p>17051204011</p>
+                                        <p>{{$data1->nip}}</p>
                                     </div>
                                     <div class="form-group">
                                         <b>Jenis Kelamin</b>
-                                        <p>Laki - laki</p>
-                                    </div>
-                                    <div class="form-group">
-                                        <b>Jenis Kelamin</b>
-                                        <p>Laki - laki</p>
+                                        <p>{{$data->jenis_kelamin}}</p>
                                     </div>
                                     <div class="form-group">
                                         <b>Email</b>
-                                        <p>iqbalul.hidayat2801@gmail.com</p>
+                                        <p>{{$data->email}}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>Alamat</b>
+                                        <p>{{$data->alamat}}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>TTL</b>
+                                        <p>{{$data->tempat_lahir}}, {{$data->tanggal_lahir}}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>Telepon</b>
+                                        <p>{{$data->telp}}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>Username</b>
+                                        <p>{{$data->username}}</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <b>Mata Pelajaran</b>
+                                        <p>belom query</p>
                                     </div>
                                 </div>
                             </div>

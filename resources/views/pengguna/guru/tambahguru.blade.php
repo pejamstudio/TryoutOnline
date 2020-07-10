@@ -117,11 +117,8 @@
                                         <a class="btn btn-danger mr-1" href="{{route('admin.pengguna.guru')}}">Kembali</a>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
-                                </div>
-                                
+                                </div> 
                             </div>
-                            <br>
-                            
                         </form>
                     </div>
                 </div>

@@ -25,6 +25,16 @@
                 <a href="{{route('pengguna.guru.tambah')}}" class="btn btn-primary">
                     <i class="fa fa-plus-square m-r-5"></i> Tambah Guru
                 </a>
+                @if(\Session::has('alert'))
+                    <div class="alert alert-danger">
+                        <div>{{Session::get('alert')}}</div>
+                    </div>
+                @endif
+                @if(\Session::has('alert-success'))
+                    <div class="alert alert-success">
+                        <div>{{Session::get('alert-success')}}</div>
+                    </div>
+                @endif
                 <table id="example1" class="table table-striped table-bordered">
                     <thead>
                     <tr>
@@ -52,9 +62,12 @@
                                         <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <button class="dropdown-item" type="button"><i class="ti-info mr-3"></i><a href="">Detail</a></button>
-                                        <button class="dropdown-item" type="button"><i class="ti-pencil mr-3"></i>Edit</button>
-                                        <button class="dropdown-item" type="button"><i class="ti-trash mr-3"></i>Hapus</button>
+                                        <a href="{{route('pengguna.guru.detail', $p->id_user)}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Detail</button></a>
+                                        <a href="{{route('pengguna.guru.edit', $p->id_user)}}"><button class="dropdown-item" type="button"><i class="ti-pencil mr-3"></i>Edit</button></a>
+                                        <form method="post" action="{{url('admin/hapusguru', $p->id_user)}}">
+                                            @csrf
+                                            <button class="dropdown-item" type="submit"><i class="ti-trash mr-3"></i>Hapus</button>
+                                        </form>
                                     </div>
                                 </div>
                             </td>

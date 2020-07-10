@@ -26,8 +26,11 @@ Route::get('admin/pengguna/guru', "AdminController@pengguna_guru")->name('admin.
 Route::get('pengguna/guru/tambah', "AdminController@tambah_guru")->name('pengguna.guru.tambah');
 Route::post('admin/tambahguru', "AdminController@tambah_guruPost");
 
-Route::get('pengguna/guru/edit', "AdminController@edit_guru")->name('pengguna.guru.edit');
-Route::get('pengguna/guru/detail', "AdminController@detail_guru")->name('pengguna.guru.detail');
+Route::get('pengguna/guru/edit-{id}', "AdminController@edit_guru")->name('pengguna.guru.edit');
+Route::post('admin/editguru/{id}', "AdminController@edit_guruPost");
+Route::post('admin/hapusguru/{id}', "AdminController@hapus_guru");
+
+Route::get('pengguna/guru/detail-{id}', "AdminController@detail_guru")->name('pengguna.guru.detail');
 
 Route::get('admin/pengguna/siswa', "AdminController@pengguna_siswa")->name('admin.pengguna.siswa');
 Route::get('pengguna/siswa/tambah', "AdminController@tambah_siswa")->name('pengguna.siswa.tambah');
