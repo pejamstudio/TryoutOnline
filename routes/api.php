@@ -18,4 +18,5 @@ Route::get('read', function (){
 	return user::all();
 });
 
-Route::get('load_guru', "ApiController@read_guru");
+Route::post('load_guru', "ApiController@read_guru");
+Route::post('create_guru', "ApiController@create_guru");

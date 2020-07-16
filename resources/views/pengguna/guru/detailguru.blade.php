@@ -1,5 +1,5 @@
 
-@extends('admin/template')
+@extends('template')
 
 
 @section('content')
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="form-group">
                                         <b>NIP</b>
-                                        <p>{{$data1->nip}}</p>
+                                        <p>{{$data->nip}}</p>
                                     </div>
                                     <div class="form-group">
                                         <b>Jenis Kelamin</b>
@@ -61,11 +61,13 @@
                                     </div>
                                     <div class="form-group">
                                         <b>Mata Pelajaran</b>
-                                        <p>belom query</p>
+                                        @foreach($mapel as $i => $m)
+                                            <p>{{$i+1}}. {{$m->nama_mapel}} {{$m->nama_kelas}}</p>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-danger mr-1 mt-3" href="{{route('admin.pengguna.guru')}}">Kembali</a>
+                            <a class="btn btn-danger mr-1 mt-3" href="{{route('pengguna.guru')}}">Kembali</a>
                         </form>
                     </div>
                 </div>

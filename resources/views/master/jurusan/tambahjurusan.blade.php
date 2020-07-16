@@ -1,5 +1,5 @@
 
-@extends('admin/template')
+@extends('template')
 
 
 @section('content')
@@ -19,12 +19,13 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form action="{{url('tambahjurusan')}}" method="post">
+                            {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="nama">Nama Jurusan</label>
-                                <input type="text" class="form-control" id="nama" placeholder="Masukkan nama" required="">
+                                <input type="text" class="form-control" id="nama" placeholder="Masukkan nama jurusan" name="jurusan" required="">
                             </div>
-                            <a class="btn btn-danger mr-1" href="{{route('admin.master.jurusan')}}">Kembali</a>
+                            <a class="btn btn-danger mr-1" href="{{route('master.jurusan.jurusan')}}">Kembali</a>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
                     </div>

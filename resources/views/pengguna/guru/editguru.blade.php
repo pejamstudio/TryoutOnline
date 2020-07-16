@@ -1,5 +1,5 @@
 
-@extends('admin/template')
+@extends('template')
 
 
 @section('content')
@@ -18,12 +18,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="post" action="{{url('/admin/editguru', $data1->id_user)}}">
+                        <form method="post" action="{{url('editguru', $guru->id)}}">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-5 text-center">
                                     <div>
-                                        <img id="image_preview_container" style="width: 80%; height: auto;" src="{{url('/assets/images/foto/guru/'.$data->foto)}}"
+                                        <img id="image_preview_container" style="width: 80%; height: auto;" src="{{url('/assets/images/foto/guru/'.$guru1->foto)}}"
                                             alt="preview image" style="max-height: 150px;">
                                     </div>
                                     <br>
@@ -37,11 +37,11 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" required="" value="{{$data->nama}}">
+                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" required="" value="{{$guru1->nama}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">NIP</label>
-                                        <input type="text" class="form-control" id="nama" name="nip" placeholder="Masukkan NIP" required="" value="{{$data1->nip}}">
+                                        <input type="text" class="form-control" id="nama" name="nip" placeholder="Masukkan NIP" required="" value="{{$guru->nip}}">
                                     </div>
                                     <label for="nama">Jenis Kelamin</label>
                                     <div class="mb-2">
@@ -49,7 +49,7 @@
                                             <input type="radio" id="customRadioInline1" name="       jenis_kelamin"
                                                    class="custom-control-input" value="Laki - laki" 
                                                    <?php 
-                                                        if ($data->jenis_kelamin == 'Laki - laki') {
+                                                        if ($guru1->jenis_kelamin == 'Laki - laki') {
                                                             echo "checked";
                                                         }
                                                     ?>
@@ -60,7 +60,7 @@
                                             <input type="radio" id="customRadioInline2" name="jenis_kelamin"
                                                    class="custom-control-input" value="Perempuan"
                                                    <?php 
-                                                        if ($data->jenis_kelamin == 'Perempuan') {
+                                                        if ($guru1->jenis_kelamin == 'Perempuan') {
                                                             echo "checked";
                                                         }
                                                     ?>
@@ -72,52 +72,51 @@
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" name="email" 
-                                               aria-describedby="emailHelp" placeholder="Masukkan email" value="{{$data->email}}">
+                                               aria-describedby="emailHelp" placeholder="Masukkan email" value="{{$guru1->email}}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Masukkan username" name="username" value="{{$data->username}}" required="">
+                                        <input type="text" class="form-control" id="username" placeholder="Masukkan username" name="username" value="{{$guru1->username}}" required="">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="nomor">Nomor Telepon</label>
-                                        <input type="text" class="form-control" id="notelepon" placeholder="Masukkan nomor telepon" name="notelp" required="" value="{{$data->telp}}">
+                                        <input type="text" class="form-control" id="notelepon" placeholder="Masukkan nomor telepon" name="notelp" required="" value="{{$guru1->telp}}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="tmplahir">Tempat Lahir</label>
-                                        <input type="textarea" class="form-control" id="tmplahir" placeholder="Masukkan tempat lahir" name="temp_lahir" required="" value="{{$data->tempat_lahir}}">
+                                        <input type="textarea" class="form-control" id="tmplahir" placeholder="Masukkan tempat lahir" name="temp_lahir" required="" value="{{$guru1->tempat_lahir}}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="tanggallahir">Tanggal Lahir</label>
-                                        <input type="date" class="form-control" id="tanggallahir" name="tanggallahir" required="" value="{{$data->tanggal_lahir}}">
+                                        <input type="date" class="form-control" id="tanggallahir" name="tanggallahir" required="" value="{{$guru1->tanggal_lahir}}">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="alamat">Alamat</label>
-                                        <input type="textarea" class="form-control" id="alamat" placeholder="Masukkan alamat" name="alamat" required="" value="{{$data->alamat}}">
+                                        <input type="textarea" class="form-control" id="alamat" placeholder="Masukkan alamat" name="alamat" required="" value="{{$guru1->alamat}}">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="mapel">Mata Pelajaran</label>
-                                        <select class="form-control" id="matapelajaran" name="matapelajaran">
-                                            <option value="Biologi" 
-                                                <?php 
-                                                    if ($data1->id_mapel == 'Biologi') {
-                                                        echo "selected";
-                                                    }
-                                                 ?>
-                                            >BIOLOGI</option>
-                                            <option value="Fisika"
-                                                <?php 
-                                                    if ($data1->id_mapel == 'Fisika') {
-                                                        echo "selected";
-                                                    }
-                                                 ?>
-                                            >FISIKA</option>
-                                        </select>
+                                        <label for="nama">Mata Pelajaran</label>
+                                        <div class="mb-2">
+                                            @foreach($mapel as $m)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="{{$m->id}}" name="mapel[]"
+                                                    <?php 
+                                                        if($m->id_guru != 0)
+                                                        {
+                                                            echo "disabled";
+                                                        }
+                                                     ?>
+                                                    >
+                                                    <label class="form-check-label" for="inlineCheckbox">{{$m->nama_mapel}} -> {{$m->nama_kelas}}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -127,7 +126,7 @@
                                     </div>
 
                                     <div class="form-group text-right">
-                                        <a class="btn btn-danger mr-1" href="{{route('admin.pengguna.guru')}}">Kembali</a>
+                                        <a class="btn btn-danger mr-1" href="{{route('pengguna.guru')}}">Kembali</a>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </div> 

@@ -12,52 +12,80 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('login');
-});
-
+//login
+Route::get('/', "LoginController@login")->name('login');
 Route::post('/login', "LoginController@loginPost");
-
+Route::get('/resetpassword', "LoginController@lupa_password")->name('lupapassword');
+Route::post('/reset', "LoginController@lupa_passwordPost");
 Route::get('/logout', "LoginController@logout");
-Route::get('admin/dashboard', "LoginController@index");
+Route::get('/dashboard', "LoginController@index")->name('dashboard');
 
-Route::get('admin/pengguna/guru', "AdminController@pengguna_guru")->name('admin.pengguna.guru');
-Route::get('pengguna/guru/tambah', "AdminController@tambah_guru")->name('pengguna.guru.tambah');
-Route::post('admin/tambahguru', "AdminController@tambah_guruPost");
+// jurusan
+Route::get('master/jurusan', "JurusanController@master_jurusan")->name('master.jurusan.jurusan');
+Route::get('master/jurusan/tambah', "JurusanController@tambah_jurusan")->name('master.jurusan.tambah');
+Route::post('tambahjurusan', "JurusanController@tambah_jurusanPost");
+Route::get('master/jurusan/edit-{id}', "JurusanController@edit_jurusan")->name('master.jurusan.edit');
+Route::post('editjurusan/{id}', "JurusanController@edit_jurusanPost");
+Route::post('hapusjurusan/{id}', "JurusanController@delete_jurusan");
+Route::get('detailjurusan/{id}', "JurusanController@detail_jurusan");
 
-Route::get('pengguna/guru/edit-{id}', "AdminController@edit_guru")->name('pengguna.guru.edit');
-Route::post('admin/editguru/{id}', "AdminController@edit_guruPost");
-Route::post('admin/hapusguru/{id}', "AdminController@hapus_guru");
+// kelas
+Route::get('master/kelas', "KelasController@master_kelas")->name('master.kelas.kelas');
+Route::get('master/kelas/tambah', "KelasController@tambah_kelas")->name('master.kelas.tambah');
+Route::post('master/tambahkelas', "KelasController@tambah_kelasPost");
+Route::get('master/kelas/edit-{id}', "KelasController@edit_kelas")->name('master.kelas.edit');
+Route::post('master/editkelas/{idd}', "KelasController@edit_kelasPost");
+Route::post('master/hapuskelas/{idd}', "KelasController@delete_kelas");
+Route::get('master/detailkelas/{search}', "KelasController@detail_kelas");
 
-Route::get('pengguna/guru/detail-{id}', "AdminController@detail_guru")->name('pengguna.guru.detail');
+// guru
+Route::get('pengguna/guru', "GuruController@pengguna_guru")->name('pengguna.guru');
+Route::get('pengguna/guru/tambah', "GuruController@tambah_guru")->name('pengguna.guru.tambah');
+Route::post('tambahguru', "GuruController@tambah_guruPost");
+Route::get('pengguna/guru/edit/{id}', "GuruController@edit_guru")->name('pengguna.guru.edit');
+Route::post('editguru/{id}', "GuruController@edit_guruPost");
+Route::post('hapusguru/{id}', "GuruController@hapus_guru");
+Route::get('pengguna/guru/detail/{id}', "GuruController@detail_guru")->name('pengguna.guru.detail');
 
-Route::get('admin/pengguna/siswa', "AdminController@pengguna_siswa")->name('admin.pengguna.siswa');
-Route::get('pengguna/siswa/tambah', "AdminController@tambah_siswa")->name('pengguna.siswa.tambah');
-Route::get('pengguna/siswa/edit', "AdminController@edit_siswa")->name('pengguna.siswa.edit');
-Route::get('pengguna/siswa/detail', "AdminController@detail_siswa")->name('pengguna.siswa.detail');
+// siswa
+Route::get('pengguna/siswa', "SiswaController@pengguna_siswa")->name('pengguna.siswa.siswa');
+Route::get('pengguna/siswa/tambah', "SiswaController@tambah_siswa")->name('pengguna.siswa.tambah');
+Route::post('tambahsiswa', "SiswaController@tambah_siswaPost");
+Route::get('pengguna/siswa/edit-{id}', "SiswaController@edit_siswa")->name('pengguna.siswa.edit');
+Route::post('editsiswa/{id}', "SiswaController@edit_siswaPost");
+Route::get('pengguna/siswa/detail-{id}', "SiswaController@detail_siswa")->name('pengguna.siswa.detail');
+Route::post('hapussiswa/{id}', "SiswaController@hapus_siswa");
 
-Route::get('admin/master/jurusan', "AdminController@master_jurusan")->name('admin.master.jurusan');
-Route::get('master/jurusan/tambah', "AdminController@tambah_jurusan")->name('master.jurusan.tambah');
-Route::get('master/jurusan/edit', "AdminController@edit_jurusan")->name('master.jurusan.edit');
+//mapel
+Route::get('master/mapel', "MapelController@master_mapel")->name('master.mapel');
+Route::get('master/mapel/tambah', "MapelController@tambah_mapel")->name('master.mapel.tambah');
+Route::post('mapel/tambah', "MapelController@tambah_mapelPost");
+Route::get('master/mapel/edit/{id}', "MapelController@edit_mapel");
+Route::post('mapel/edit/{id}', "MapelController@edit_mapelPost");
+Route::post('mapel/hapus/{id}', "MapelController@delete_mapel");
+Route::get('master/detailmapel/{id}', "MapelController@detail_mapel");
+Route::get('master/mapel/datasoal/{id}', "MapelController@detail_mapel_soal")->name('detail.mapel.soal');
 
-Route::get('admin/master/kelas', "AdminController@master_kelas")->name('admin.master.kelas');
-Route::get('master/kelas/tambah', "AdminController@tambah_kelas")->name('master.kelas.tambah');
-Route::get('master/kelas/edit', "AdminController@edit_kelas")->name('master.kelas.edit');
+//soal
+Route::get('master/mapel/datasoal/tambah/{id}', "SoalController@tambah_soal")->name('master.soal.tambah');
+Route::post('master/tambahsoal/{id}', "SoalController@tambah_soalPost");
+Route::get('master/mapel/datasoal/detail/{id}', "SoalController@detail_soal");
+Route::get('master/mapel/datasoal/edit/{id}', "SoalController@edit_soal");
+Route::post('master/editsoal/{id}', "SoalController@edit_soalPost");
+Route::post('master/hapussoal/{id}', "SoalController@delete_soal");
 
-Route::get('admin/master/mapel', "AdminController@master_mapel")->name('admin.master.mapel');
-Route::get('master/mapel/tambah', "AdminController@tambah_mapel")->name('master.mapel.tambah');
-Route::get('master/mapel/edit', "AdminController@edit_mapel")->name('master.mapel.edit');
+//nilai
+Route::get('nilai', "NilaiController@nilai")->name('nilai');
+Route::get('ceknilai/{id}', "NilaiController@cek_nilai");
+Route::get('nilai/detail/{id}', "NilaiController@detail_nilai");
 
+//tryout
+Route::get('tryout', "TryoutController@tryout")->name('tryout');
+Route::get('tryout/kerjakan', "TryoutController@kerjakan_tryout")->name('kerjakan.tryout');
+Route::post('submit/{id}', "TryoutController@submit");
 
-Route::get('guru/datanilai', "GuruController@guru_datanilai")->name('master.mapel.tambah');
-Route::get('guru/dashboard', "GuruController@guru_dashboard")->name('master.mapel.edit');
-Route::get('guru/datasoal', "GuruController@guru_datasoal")->name('master.mapel.edit');
-Route::get('guru/datasiswa', "GuruController@guru_datasiswa")->name('master.mapel.edit');
-
-Route::get('admin/master/soal', "AdminController@master_paketsoal")->name('admin.master.soal');
-Route::get('master/soal/tambah', "AdminController@tambah_paketsoal")->name('master.soal.tambah');
-Route::get('master/soal/edit' , "AdminController@edit_paketsoal")->name('master.soal.edit');
-Route::get('master/soal/detail', "AdminController@detail_paketsoal")->name('master.soal.detail');
-Route::get('master/soal/detail/data-soal', "AdminController@paketsoal_soal")->name('master.soal.detail.datasoal');
+//profil
+Route::get('profil', "ProfilController@profil")->name('profil');
+Route::get('profil/edit', "ProfilController@edit_profil")->name('profil.edit');
+Route::post('editprofil', "ProfilController@edit_profilPost")->name('editprofil');
 

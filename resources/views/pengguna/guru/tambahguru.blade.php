@@ -1,5 +1,5 @@
 
-@extends('admin/template')
+@extends('template')
 
 
 @section('content')
@@ -29,7 +29,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{url('admin/tambahguru')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{url('tambahguru')}}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-md-5 text-center">
@@ -100,11 +100,22 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="mapel">Mata Pelajaran</label>
-                                        <select class="form-control" id="matapelajaran" name="matapelajaran">
-                                            <option value="Biologi">BIOLOGI</option>
-                                            <option value="Fisika">FISIKA</option>
-                                        </select>
+                                        <label for="nama">Mata Pelajaran</label>
+                                        <div class="mb-2">
+                                            @foreach($mapel as $m)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="{{$m->id}}" name="mapel[]"
+                                                    <?php 
+                                                        if($m->id_guru != 0)
+                                                        {
+                                                            echo "disabled";
+                                                        }
+                                                     ?>
+                                                    >
+                                                    <label class="form-check-label" for="inlineCheckbox">{{$m->nama_mapel}} -> {{$m->nama_kelas}}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
 
                                     <div class="form-group">
@@ -114,7 +125,7 @@
                                     </div>
 
                                     <div class="form-group text-right">
-                                        <a class="btn btn-danger mr-1" href="{{route('admin.pengguna.guru')}}">Kembali</a>
+                                        <a class="btn btn-danger mr-1" href="{{route('pengguna.guru')}}">Kembali</a>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                 </div> 

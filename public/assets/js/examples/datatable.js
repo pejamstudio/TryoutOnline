@@ -1,8 +1,11 @@
 'use strict';
 $(document).ready(function () {
-
+	var x = document.getElementById('s');
+	x.style.display = 'none';
     $('#example1').DataTable({
-        responsive: true
+        "search":{
+        	"search": x.value
+        }
     });
 
     $('#example2').DataTable({

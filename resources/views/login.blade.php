@@ -58,7 +58,7 @@
                 </div>
                 <button class="btn btn-primary btn-lg btn-block btn-uppercase mb-4" type="submit">Masuk</button>
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <a href="#" class="auth-link text-black">Lupa Password?</a>
+                    <a href="{{route('lupapassword')}}" class="auth-link text-black">Lupa Password?</a>
                 </div>
                 
             </form>
