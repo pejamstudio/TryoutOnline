@@ -25,15 +25,20 @@
         <div class="card">
             <div class="card-body">
             <div class="table-responsive">
-                <?php 
-                    if ($session == 'Admin' && $cek_kelas) {
-                ?>
-                    <a href="{{url('master/mapel/tambah')}}" class="btn btn-primary">
-                        <i class="fa fa-plus-square m-r-5"></i> Tambah Mata Pelajaran
-                    </a>
-                <?php
-                    }
-                 ?>
+                <a  
+                    <?php 
+                        if ($session == 'Admin') {
+                            echo 'href="{{url("master/mapel/tambah")}}"';
+                        }
+                        else if($session == 'Guru')
+                        {
+                            echo 'href="" data-target="#pilihmapel" 
+                                        data-toggle="modal"';
+                        }
+                     ?>
+                    class="btn btn-primary">
+                    <i class="fa fa-plus-square m-r-5"></i> Tambah Mata Pelajaran
+                </a>
                 @if(\Session::has('alert'))
                     <div class="alert alert-danger">
                         <div>{{Session::get('alert')}}</div>
@@ -61,7 +66,23 @@
                         <tr>
                             <td>{{$i+1}}</td>
                             <td>{{$p->nama_mapel}}</td>
-                            <td>{{$p->nama_kelas}}</td>
+                            <td>
+                            <?php 
+                                if($session != 'Siswa')
+                                {
+                                    foreach ($mapel as $d) {
+                                        if($d->nama_mapel == $p->nama_mapel)
+                                        {
+                                            echo $d->nama_kelas."<br>";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    echo $p->nama_kelas;
+                                }
+                             ?>
+                            </td>
                             <td>{{$p->kkm}}</td>
                             @if($session != 'Siswa')
                                 <td class="text-center">
@@ -78,11 +99,18 @@
                                         <?php
                                             }
                                          ?>
-                                        <a href="{{url('master/mapel/datasoal', $p->id)}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Soal</button></a>
+                                         <a href=""
+                                        data-target="#data_soal" 
+                                        data-toggle="modal"
+                                        data-id="{{$p->nama_mapel}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Soal</button></a>
+                                        <!-- <a href="{{url('master/mapel/datasoal', $p->id)}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Soal</button></a> -->
                                         <?php 
                                             if ($session == 'Admin' ) {
                                         ?>
-                                        <button class="dropdown-item" type="submit" data-target="#createEventModal"><i class="ti-pencil mr-3"></i>Tentukan Jadwal</button>
+                                        <a href="#setjadwal" 
+                                        data-target="#setjadwal" 
+                                        data-toggle="modal" 
+                                        data-id="{{$p->nama_mapel}}"><button class="dropdown-item"><i class="ti-pencil mr-3"></i>Tentukan Jadwal</button></a>
                                         <a href="{{url('master/mapel/edit', $p->id)}}"><button class="dropdown-item" type="button"><i class="ti-pencil mr-3"></i>Edit</button></a>
                                         <?php
                                             }
@@ -120,88 +148,124 @@
             </div>
         </div>
 
-        <div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="setjadwal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Create Event</h5>
+                        <h5 class="modal-title">Tentukan jadwal</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form autocomplete="off">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Title</label>
-                                <div class="col-sm-9">
-                                    <input id="event-title" type="text" class="form-control" placeholder="Title">
-                                </div>
+                        <div class="form-group">
+                            <label for="nama">Kelas</label>
+                            <div class="mb-2">
+                                @foreach($mapel as $i => $d)
+                                    @if($d->nama_mapel == $p->nama_mapel)
+                                        <a href="#jadwal{{$d->id}}"
+                                        data-target="#jadwal{{$d->id}}" 
+                                        data-toggle="modal" 
+                                        data-id="{{$d->id}}"><button class="form-control">{{$d->nama_kelas}}</button></a><br>
+                                    @endif
+                                @endforeach
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Event type</label>
-                                <div class="col-sm-9">
-                                    <div class="mt-2" id="event-type">
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline1">Appointment</label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline2">Meeting</label>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @foreach($mapel as $i => $p)
+        <div class="modal fade" id="jadwal{{$p->id}}" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tentukan Jadwal Tryout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form autocomplete="off" method="post" action="{{url('mapel/setjadwal', $p->id)}}">
+                            {{ csrf_field()}}
+                            <div class="form-group text-center">
+                                <label class="col-sm-3 col-form-label">{{$p->nama_mapel}} {{$p->nama_kelas}}</label>
                             </div>
                             <div class="form-group row row-sm">
-                                <label class="col-sm-3 col-form-label">Start</label>
+                                <label class="col-sm-3 col-form-label">Jadwal</label>
                                 <div class="col-sm-5">
-                                    <input id="event-start-date" type="text" class="form-control create-event-datepicker" placeholder="Date">
+                                    <input type="date" class="form-control" placeholder="Tanggal" name="tanggal"
+                                    value="{{$p->tanggal}}" 
+                                    >
                                 </div>
                                 <div class="col-sm-4">
-                                    <input id="event-start-time" type="text" class="form-control create-event-demo" placeholder="Time">
-                                </div>
-                            </div>
-                            <div class="form-group row row-sm">
-                                <label class="col-sm-3 col-form-label">End</label>
-                                <div class="col-sm-5">
-                                    <input id="event-end-date" type="text" class="form-control create-event-datepicker" placeholder="Date">
-                                </div>
-                                <div class="col-sm-4">
-                                    <input id="event-end-time" type="text" class="form-control create-event-demo" placeholder="Time">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Participate</label>
-                                <div class="col-sm-9">
-                                    <div class="avatar-group">
-                                        <figure class="avatar avatar-sm">
-                                            <span class="avatar-title bg-success rounded-circle">K</span>
-                                        </figure>
-                                        <figure class="avatar avatar-sm">
-                                            <span class="avatar-title bg-danger rounded-circle">S</span>
-                                        </figure>
-                                        <figure class="avatar avatar-sm">
-                                            <span class="avatar-title bg-primary rounded-circle">C</span>
-                                        </figure>
-                                        <figure class="avatar avatar-sm">
-                                            <img src="../assets/media/image/avatar.jpg" class="rounded-circle">
-                                        </figure>
-                                    </div>
-                                    <button type="button" class="btn btn-primary btn-floating">
-                                        <i class="ti-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Description</label>
-                                <div class="col-sm-9">
-                                    <textarea id="event-desc" class="form-control" rows="6"></textarea>
+                                    <input type="time" class="form-control" placeholder="Waktu" name="waktu" value="{{$p->waktu}}">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3"></label>
                                 <div class="col-sm-9">
-                                    <button type="submit" id="btn-save" class="btn btn-primary">Create</button>
+                                    <button type="submit" id="btn-save" class="btn btn-primary">Buat</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <div class="modal fade" id="data_soal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Data Soal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nama">Kelas</label>
+                            <div class="mb-2">
+                                @foreach($mapel as $i => $d)
+                                    @if($d->nama_mapel == $p->nama_mapel)
+                                        <a href="{{url('master/mapel/datasoal', $d->id)}}"><button class="form-control">{{$d->nama_kelas}}</button></a><br>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- guru -->
+        <div class="modal fade" id="pilihmapel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mata Pelajaran</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{route('tambahmapelguru')}}" method="post">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="nama">Pilih Mata Pelajaran Yang Akan Diampu</label>
+                                <div class="mb-2">
+                                    @foreach($mapel_guru as $k)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="{{$k->id}}" name="mapelguru[]">
+                                            <label class="form-check-label" for="inlineCheckbox">  
+                                            {{$k->nama_mapel}} {{$k->nama_kelas}} <br></label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                             </div>
                         </form>

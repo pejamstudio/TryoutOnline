@@ -7,7 +7,7 @@
     <div class="container">
 
         <!-- begin::page header -->
-        
+
         <div class="page-header d-md-flex align-items-center justify-content-between">
             <div>
                 <h3>Dashboard</h3>

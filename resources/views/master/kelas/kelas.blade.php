@@ -42,8 +42,8 @@
                     <thead>
                     <tr>
                         <th>No</th>
-                        <th>Jurusan</th>
                         <th>Nama Kelas</th>
+                        <th>Jurusan</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
@@ -51,8 +51,8 @@
                         @foreach($data as $i =>$p)
                         <tr>
                             <td>{{$i+1}}</td>
-                            <td>{{$p->nama_jurusan}}</td>
                             <td>{{$p->nama_kelas}}</td>
+                            <td>{{$p->nama_jurusan}}</td>
                             <td class="text-center">
                                 <div class="dropdown">
                                     <a href="#" class="btn btn-light btn-floating btn-icon btn-sm"
@@ -77,8 +77,8 @@
                     <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Jurusan</th>
                         <th>Nama Kelas</th>
+                        <th>Jurusan</th>
                         <th>Aksi</th>
                     </tr>
                     </tfoot>

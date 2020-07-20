@@ -31,12 +31,12 @@ class NilaiController extends Controller
 	        	$session = 'Admin';
 		    }else if (Session::get('level') == 'G') {
                 $data = $data
-                        ->where(['guru.id_guru' => Session::get('id-guru')])
+                        ->where(['guru.id' => Session::get('id-guru')])
                         ->get();
 		        $session = 'Guru';
 		    }else if(Session::get('level') == 'S'){
                 $data = $data
-                        ->where(['id_siswa' => Session::get('id-siswa')])
+                        ->where(['siswa.id' => Session::get('id-siswa')])
                         ->get();
 		        $session = 'Siswa';
 		    }
@@ -79,9 +79,9 @@ class NilaiController extends Controller
                     ->select('mapel.nama_mapel', 'nilai.nilai', 'mapel.jumlah_soal', 'mapel.kkm')
                     ->first();
             $soal = DB::table('soal')
+                    ->leftJoin('siswa_jawab', 'soal.id', '=', 'siswa_jawab.id_soal')
                     ->leftJoin('mapel', 'mapel.id', '=', 'soal.id_mapel')
                     ->leftJoin('nilai', 'nilai.id_mapel', '=', 'mapel.id')
-                    ->leftJoin('siswa_jawab', 'soal.id', '=', 'siswa_jawab.id_soal')
                     ->select('soal.soal', 'soal.jawab_a', 'soal.jawab_b', 'soal.jawab_c', 'soal.jawab_d', 'soal.jawab_e', 'soal.kunci', 'siswa_jawab.jawab')
                     ->where(['nilai.id' => $id])
                     ->get();

@@ -110,12 +110,13 @@ class GuruController extends Controller
 
         if($request->mapel != null){
             foreach ($request->mapel as $map) {
-            $mapel = mapelModel::findOrFail($map);
-            $mapel->id_guru = $id_guru;
+                $mapel = mapelModel::findOrFail($map);
+                $mapel->id_guru = $id_guru;
 
-            $mapel->save();
+                $mapel->save();
+            }
         }
-        }
+        Session::put('search_guru', 'all');
 
         $data->save();
         $data_guru->save();
@@ -156,6 +157,8 @@ class GuruController extends Controller
         $data_guru = guruModel::where(['id' => $id])->first();
         $data = userModel::where(['id' => $data_guru->id_user])->first();
 
+        $mpl = mapelModel::where(['id_guru' => $id])->get();
+
         $comment = '';
         $file = $request->file('image');
         if($file != ''){
@@ -182,6 +185,21 @@ class GuruController extends Controller
 
         $data->tanggal_lahir = $date;
         $data->alamat = $request->alamat;
+
+        //set mapel
+        foreach ($mpl as $m) {
+            $m->id_guru = null;
+            $m->save();
+        }
+        if($request->mapel != null){
+            foreach ($request->mapel as $m) {
+                $map = mapelModel::findOrFail($m);
+                $map->id_guru = $id;
+                $map->save();
+           }
+        }
+
+        Session::put('search_guru', 'all');
 
         $data->save();
         $data_guru->save();

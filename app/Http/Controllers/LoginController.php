@@ -11,6 +11,7 @@ use App\guruModel;
 use App\siswaModel;
 use App\kelasModel;
 use App\mapelModel;
+use App\jadwalModel;
 use App\Mail\SendMail;
 use DB;
 
@@ -68,7 +69,7 @@ class LoginController extends Controller
                 }
                 else if ($data == 'G') {
                     Session::put('level', 'G');
-                    $id_guru = guruModel::where(['id_user' => $dataDb->id])->first();
+                    $id_guru = DB::table('guru')->where(['id_user' => $dataDb->id])->first();
                     Session::put('id-guru', $id_guru->id);
                     return redirect('/dashboard');
                 }else if($data == 'S'){
@@ -121,5 +122,33 @@ class LoginController extends Controller
     public function logout(){
         Session::flush();
         return redirect('/')->with('alert', 'Anda sudah logout!');
+    }
+
+    public function setjadwal()
+    {
+        $jadwal = DB::table('jadwal')
+                ->leftJoin('mapel', 'mapel.id', '=', 'jadwal.id_mapel')
+                ->leftJoin('kelas', 'kelas.id', '=', 'mapel.id_kelas')
+                ->select('mapel.nama_mapel', 'jadwal.tanggal', 'jadwal.waktu', 'kelas.nama_kelas')
+                ->get();
+        // if(Session::get('level') == 'A'){
+            
+        // }else if (Session::get('level') == 'G') {
+            
+        // }else if(Session::get('level') == 'S'){
+            
+        // }
+        $data = array();
+        foreach ($jadwal as $j) {
+            if($j->nama_mapel != '')
+            {
+                $data[] = array( 
+                    'title' => $j->nama_kelas.' ('.$j->nama_mapel.')', 
+                    'start' => $j->tanggal.' '.$j->waktu
+                );
+            }
+        }
+
+        echo json_encode($data);
     }
 }

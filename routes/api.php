@@ -20,3 +20,7 @@ Route::get('read', function (){
 
 Route::post('load_guru', "ApiController@read_guru");
 Route::post('create_guru', "ApiController@create_guru");
+Route::post('load_siswa_where_guru', "ApiController@load_siswa_where_guru");
+Route::post('profil_guru', "ApiController@profil_guru");
+Route::post('profil_siswa', "ApiController@profil_siswa");
+Route::post('load_nilai_where_guru', "ApiController@load_nilai_where_guru");

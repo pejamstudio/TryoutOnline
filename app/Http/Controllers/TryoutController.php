@@ -7,6 +7,7 @@ use App\mapelModel;
 use App\soalModel;
 use App\siswajawabModel;
 use App\nilaiModel;
+use App\jadwalModel;
 use DB;
 use Illuminate\Support\Facades\Session;	
 
@@ -18,9 +19,6 @@ class TryoutController extends Controller
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
         else{
-            $data = mapelModel::findOrFail(19);
-            $cek = nilaiModel::where(['id_mapel' => 19]);
-
             $session = '';
 
 			if(Session::get('level') == 'A'){
@@ -30,6 +28,20 @@ class TryoutController extends Controller
 		    }else if(Session::get('level') == 'S'){
 		        $session = 'Siswa';
 		    }
+
+            $data = DB::table('mapel')
+                    ->leftJoin('kelas_siswa', 'kelas_siswa.id_kelas', '=', 'mapel.id_kelas')
+                    ->leftJoin('jadwal', 'mapel.id', '=', 'jadwal.id_mapel')
+                    ->select('mapel.id', 'mapel.nama_mapel', 'mapel.durasi', 'mapel.jumlah_soal', 'mapel.kkm', 'jadwal.tanggal', 'jadwal.waktu')
+                    ->where(['kelas_siswa.id_siswa' => Session::get('id-siswa'), 'tanggal' => (date_format(date_create(), 'Y-m-d'))])
+                    ->get();
+            $cek = nilaiModel::where(['id_siswa' => Session::get('id-siswa')])->get();
+
+            // $i = 0;
+            // $data = DB::table('mapel');
+            // foreach ($data1 as $d) {
+                
+            // }
 
     		return view('tryout/tryout', compact('data', 'cek', 'session'));
         }

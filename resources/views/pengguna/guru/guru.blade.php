@@ -57,10 +57,12 @@
                             <td>{{$p->email}}</td>
                             <td>
                                 <?php 
-                                    foreach ($mapel as $i => $m) {
+                                    $i = 0;
+                                    foreach ($mapel as $m) {
                                         if($m->id_guru == $p->id)
                                         {
                                             echo ($i+1).". ".$m->nama_mapel." ".$m->nama_kelas.'<br>';
+                                            $i++;
                                         }
                                     }
                                  ?>

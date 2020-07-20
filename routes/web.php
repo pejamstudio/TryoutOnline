@@ -65,6 +65,7 @@ Route::post('mapel/edit/{id}', "MapelController@edit_mapelPost");
 Route::post('mapel/hapus/{id}', "MapelController@delete_mapel");
 Route::get('master/detailmapel/{id}', "MapelController@detail_mapel");
 Route::get('master/mapel/datasoal/{id}', "MapelController@detail_mapel_soal")->name('detail.mapel.soal');
+Route::post('mapel/setjadwal/{id}', "MapelController@set_jadwal");
 
 //soal
 Route::get('master/mapel/datasoal/tambah/{id}', "SoalController@tambah_soal")->name('master.soal.tambah');
@@ -89,3 +90,8 @@ Route::get('profil', "ProfilController@profil")->name('profil');
 Route::get('profil/edit', "ProfilController@edit_profil")->name('profil.edit');
 Route::post('editprofil', "ProfilController@edit_profilPost")->name('editprofil');
 
+//setjadwal
+Route::get('setjadwal', "LoginController@setjadwal");
+
+//tambah mapel oleh guru
+Route::post('tambahmapelguru', "MapelController@tambah_mapel_guru")->name('tambahmapelguru');

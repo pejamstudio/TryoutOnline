@@ -47,44 +47,15 @@
                                             <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="{{$k->id}}" name="kelas[]"
                                             <?php 
                                                 foreach ($mapel as $m) {
-                                                    if($m->id_kelas == $k->id && $data->id_kelas != $k->id)
+                                                    if($m->id_kelas == $k->id)
                                                     {
-                                                        echo "disabled";
+                                                        echo "checked";
                                                     }
-                                                }
-
-                                                if($data->id_kelas == $k->id)
-                                                {
-                                                    echo "checked";
                                                 }
                                              ?>
                                             >
                                             <label class="form-check-label" for="inlineCheckbox">{{$k->nama_kelas}}</label>
                                         </div>
-                                        <!-- <div class="col-md-5">
-                                                <select class="form-control" name="guru"
-                                                    <?php 
-                                                        foreach ($mapel as $m) {
-                                                            if($m->id_kelas == $k->id && $data->id_kelas != $k->id)
-                                                            {
-                                                                echo "disabled";
-                                                            }
-                                                        }
-                                                     ?>
-                                                >
-                                                    <option>Pilih Guru</option>
-                                                    @foreach($guru as $g)
-                                                        <option value="{{$g->id}}" 
-                                                            <?php 
-                                                                if($g->id == $data->id)
-                                                                {
-                                                                    echo "selected";
-                                                                }
-                                                             ?>
-                                                            >{{$g->nama}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div> -->
                                     @endforeach
                                 </div>
                             </div>

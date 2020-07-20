@@ -27,7 +27,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h5><b>{{$nilai->jumlah_soal}}</b></h5>
+                                    <h5><b>{{count($soal)}}</b></h5>
                                     <small>Jumlah Soal</small>
                                 </div>
                                 <div class="col-sm-6">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h5><b>{{$nilai->jumlah_soal - $jumlah_benar}}</b></h5>
+                                    <h5><b>{{count($soal) - $jumlah_benar}}</b></h5>
                                     <p>Jumlah Soal Salah</p>
                                 </div>
                                 <div class="col-sm-6 align-self-center">
@@ -195,7 +195,7 @@
                                                     }
                                                  ?>
                                             </div>
-                                            <div class="form-check">
+                                            <div class="form-check disabled">
                                                 <input class="form-check-input"
                                                 <?php 
                                                     if($s->jawab == 'E')
@@ -204,7 +204,7 @@
                                                     }
                                                  ?>
                                                 disabled="" type="radio" name="gridRadios"
-                                                       id="gridRadios5" value="option5">
+                                                       id="gridRadios4" value="option4">
                                                 <label
                                                 <?php 
                                                     if($s->kunci == 'E')
@@ -216,8 +216,8 @@
                                                         echo 'class="form-check-label"';
                                                     }
                                                  ?>
-                                                for="gridRadios5">
-                                                    E. {{$s->jawab_e}}
+                                                for="gridRadios4">
+                                                    D. {{$s->jawab_e}}
                                                 </label>
                                                 <?php 
                                                     if($s->kunci == 'E')
@@ -229,7 +229,6 @@
                                             <br>
                                         </form>
                                     </div>
-                                </div>
                             </div>
                             @endforeach
                         </div>
