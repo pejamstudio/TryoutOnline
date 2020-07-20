@@ -139,8 +139,8 @@
 
         <div class="header-logo">
             <a href="#">
-                <img class="d-none d-lg-block" src="{{url('/assets/media/image/dark-logo.png')}}" alt="...">
-                <img class="d-lg-none d-sm-block" src="{{url('/assets/media/image/mobile-logo')}}.png" alt="...">
+                <img class="d-none d-lg-block" src="{{url('/assets/images/logo/logo-web.png')}}" alt="...">
+                <img class="d-lg-none d-sm-block" src="{{url('/assets/images/logo/logo.png')}}" alt="...">
             </a>
         </div>
 
@@ -174,7 +174,7 @@
                              data-backround-image="{{url('/assets/media/image/image1.png')}}">
                             <figure class="avatar avatar-state-success avatar-sm m-b-10 bring-forward">
                                 @if($session == 'Admin')
-                                    <img src="" class="rounded-circle">
+                                    <img src="{{url('/assets/images/logo/logo.png')}}" class="rounded-circle">
                                 @elseif($session == 'Guru')
                                     <img src="{{url('/assets/images/foto/guru/'.$foto)}}" class="rounded-circle">
                                 @else

@@ -33,11 +33,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="nama">Waktu Pengerjaan (menit)</label>
-                                <input type="text" class="form-control" id="durasi" placeholder="Masukkan waktu pengerjaan" name="durasi" value="{{$data->durasi}}" required="">
+                                <input type="text" class="form-control" id="durasi" placeholder="Masukkan waktu pengerjaan" name="durasi" value="{{$data->durasi}}" required="" pattern="[0-9]{0-2}">
                             </div>
                             <div class="form-group">
                                 <label for="nama">Jumlah Soal</label>
-                                <input type="text" class="form-control" id="jumlah_soal" placeholder="Masukkan jumlah soal" name="jumlah_soal" required="" value="{{$data->jumlah_soal}}">
+                                <input type="text" class="form-control" id="jumlah_soal" placeholder="Masukkan jumlah soal" name="jumlah_soal" required="" value="{{$data->jumlah_soal}}" pattern="[0-9]{0-2}">
                             </div>
                             <div class="form-group">
                                 <label for="nama">Kelas</label>

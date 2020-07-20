@@ -87,7 +87,7 @@
 
                                     <div class="form-group">
                                         <label for="nomor">Nomor Telepon</label>
-                                        <input type="text" class="form-control" id="notelepon" placeholder="Masukkan nomor telepon" name="notelp" required="" value="{{$data->telp}}">
+                                        <input type="text" class="form-control" id="notelepon" placeholder="Masukkan nomor telepon" name="notelp" required="" value="{{$data->telp}}" pattern="[0-9]{0-2}">
                                     </div>
 
                                     @if($session != 'Admin')

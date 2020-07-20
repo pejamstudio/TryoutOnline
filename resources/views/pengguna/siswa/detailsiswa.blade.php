@@ -1,5 +1,5 @@
 
-@extends('admin/template')
+@extends('template')
 
 
 @section('content')
@@ -65,11 +65,11 @@
                                     </div>
                                     <div class="form-group">
                                         <b>Kelas</b>
-                                        <p>$data->nama_kelas</p>
+                                        <p>{{$data->nama_kelas}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-danger mr-1 mt-3" href="{{route('admin.pengguna.siswa')}}">Kembali</a>
+                            <a class="btn btn-danger mr-1 mt-3" href="{{route('pengguna.siswa.siswa')}}">Kembali</a>
                         </form>
                     </div>
                 </div>

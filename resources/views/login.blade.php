@@ -35,7 +35,7 @@
         </div>
         <div class="col-lg-4 offset-lg-1">
             <div class="m-b-20">
-                <img src="../assets/media/image/dark-logo.png" class="m-r-15" width="180" alt="">
+                <img src="../assets/images/logo/logo-web.png" class="m-r-15" width="180" alt="">
             </div>
             @if(\Session::has('alert'))
                 <div class="alert alert-danger">

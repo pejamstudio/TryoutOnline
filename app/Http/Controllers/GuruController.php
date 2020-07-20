@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use File;
 use App\userModel;
 use App\guruModel;
 use App\mapelModel;
@@ -123,7 +124,8 @@ class GuruController extends Controller
         return redirect()->route('pengguna.guru')->with('alert-success','Data berhasil ditambahkan!');
     }
 
-    public function edit_guru($id){
+    public function edit_guru($id)
+    {
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -159,17 +161,13 @@ class GuruController extends Controller
 
         $mpl = mapelModel::where(['id_guru' => $id])->get();
 
-        $comment = '';
         $file = $request->file('image');
         if($file != ''){
+            File::delete('assets/images/foto/guru/'.$data->foto);
             $ext = $file->getClientOriginalExtension();
             $newName = rand(100000,1001238912)."_guru.".$ext;
             $file->move('assets/images/foto/guru',$newName);
             $data->foto = $newName;
-            $comment = 'Data berhasil diubah!';
-        }
-        else{
-            $comment = 'gagal';
         }
 
         $data->nama = $request->nama;
@@ -185,6 +183,10 @@ class GuruController extends Controller
 
         $data->tanggal_lahir = $date;
         $data->alamat = $request->alamat;
+        if($request->password != null)
+        {
+            $data->password = bcrypt($request->password);
+        }
 
         //set mapel
         foreach ($mpl as $m) {
@@ -203,7 +205,7 @@ class GuruController extends Controller
 
         $data->save();
         $data_guru->save();
-        return redirect()->route('pengguna.guru')->with('alert-success',$comment);
+        return redirect()->route('pengguna.guru')->with('alert-success', 'Berhasil diperbaharui');
     }
 
     public function detail_guru($id_pengguna)

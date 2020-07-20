@@ -55,6 +55,7 @@ class JurusanController extends Controller
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
         else{
+
             $data = jurusanModel::all();
             $data1 = new jurusanModel();
 

@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">NIP</label>
-                                        <input type="text" class="form-control" id="nama" name="nip" placeholder="Masukkan NIP" required="">
+                                        <input type="text" class="form-control" id="nama" name="nip" placeholder="Masukkan NIP" required="" pattern="[0-9]{18}">
                                     </div>
                                     <label for="nama">Jenis Kelamin</label>
                                     <div class="mb-2">
@@ -81,7 +81,7 @@
 
                                     <div class="form-group">
                                         <label for="nomor">Nomor Telepon</label>
-                                        <input type="text" class="form-control" id="notelepon" placeholder="Masukkan nomor telepon" name="notelp" required="">
+                                        <input type="text" class="form-control" id="notelepon" placeholder="Masukkan nomor telepon" name="notelp" required="" pattern="[0-9]{0-2}">
                                     </div>
 
                                     <div class="form-group">
@@ -121,7 +121,7 @@
                                     <div class="form-group">
                                         <label for="exampleInputPassword1">Password</label>
                                         <input type="password" class="form-control" id="exampleInputPassword1"
-                                               placeholder="Password" name="password">
+                                               placeholder="Password" name="password" required="">
                                     </div>
 
                                     <div class="form-group text-right">

@@ -8,8 +8,10 @@ use App\siswaModel;
 use App\kelasModel;
 use App\jurusanModel;
 use App\siswakelasModel;
+use App\nilaiModel;
 use Illuminate\Support\Facades\Session;	
 use DB;
+use File;
 
 class SiswaController extends Controller
 {
@@ -164,19 +166,14 @@ class SiswaController extends Controller
             $siswa = siswaModel::findOrFail($siswa_kelas->id_siswa);
             $user = userModel::findOrFail($siswa->id_user);
 
-            $comment = '';
             $file = $request->file('image');
             if($file != ''){
+                File::delete('assets/images/foto/siswa/'.$user->foto);
                 $ext = $file->getClientOriginalExtension();
-                $newName = rand(100000,1001238912)."_guru.".$ext;
-                $file->move('assets/images/foto/guru',$newName);
+                $newName = rand(100000,1001238912)."_siswa.".$ext;
+                $file->move('assets/images/foto/siswa',$newName);
                 $user->foto = $newName;
-                $comment = 'Data berhasil diubah!';
             }
-            else{
-                $comment = 'gagal';
-            }
-
             $user->nama = $request->nama;
             $siswa->nisn = $request->nisn;
             $user->jenis_kelamin = $request->jenis_kelamin;
@@ -191,11 +188,15 @@ class SiswaController extends Controller
             $user->tanggal_lahir = $date;
             $user->alamat = $request->alamat;
             $siswa_kelas->id_kelas = $request->kelas;
+            if($request->password != null)
+            {
+                $user->password = bcrypt($request->password);
+            }
 
             $user->save();
             $siswa->save();
             $siswa_kelas->save();
-            return redirect()->route('pengguna.siswa.siswa')->with('alert-success',$comment);
+            return redirect()->route('pengguna.siswa.siswa')->with('alert-success', 'Data berhasil diubah!');
         }
     }
 
@@ -235,10 +236,12 @@ class SiswaController extends Controller
             $siswa_kelas = siswakelasModel::findOrFail($id);
             $siswa = siswaModel::findOrFail($siswa_kelas->id_siswa);
             $user = userModel::findOrFail($siswa->id_user);
+            $nilai = nilaiModel::findOrFail($siswa_kelas->id_siswa);
 
             $siswa_kelas->delete();
             $siswa->delete();
             $user->delete();
+            $nilai->delete();
 
             return redirect()->route('pengguna.siswa.siswa')->with('alert-success','Berhasil dihapus!');;
         }
