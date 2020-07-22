@@ -24,3 +24,5 @@ Route::post('load_siswa_where_guru', "ApiController@load_siswa_where_guru");
 Route::post('profil_guru', "ApiController@profil_guru");
 Route::post('profil_siswa', "ApiController@profil_siswa");
 Route::post('load_nilai_where_guru', "ApiController@load_nilai_where_guru");
+Route::post('load_jadwal', "ApiController@load_jadwal");
+Route::post('load_soal', "ApiController@load_soal");

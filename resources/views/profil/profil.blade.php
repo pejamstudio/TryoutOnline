@@ -34,7 +34,7 @@
                                 <div class="col-md-5 text-center">
                                     <figure class="avatar" style="width: 80%; height: auto;">
                                         @if($session == 'Admin')
-                                            <img src="" class="rounded">
+                                            <img src="{{url('/assets/images/logo/logo.png')}}" class="rounded">
                                         @elseif($session == 'Guru')
                                             <img src="{{url('/assets/images/foto/guru/'.$data->foto)}}" class="rounded">
                                         @else
@@ -95,7 +95,9 @@
                                 </div>
                             </div>
                             <a class="btn btn-danger mr-1 mt-3" href="{{url('/dashboard')}}">Kembali</a>
-                            <a class="btn btn-primary mr-1 mt-3" href="{{route('profil.edit')}}">Ubah Profil</a>
+                            @if($session != 'Admin')
+                                <a class="btn btn-primary mr-1 mt-3" href="{{route('profil.edit')}}">Ubah Profil</a>
+                            @endif
                         </form>
                     </div>
                 </div>

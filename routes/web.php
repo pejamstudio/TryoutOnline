@@ -82,7 +82,7 @@ Route::get('nilai/detail/{id}', "NilaiController@detail_nilai");
 
 //tryout
 Route::get('tryout', "TryoutController@tryout")->name('tryout');
-Route::get('tryout/kerjakan', "TryoutController@kerjakan_tryout")->name('kerjakan.tryout');
+Route::post('tryout/kerjakan', "TryoutController@kerjakan_tryout")->name('kerjakan.tryout');
 Route::post('submit/{id}', "TryoutController@submit");
 
 //profil
@@ -91,7 +91,7 @@ Route::get('profil/edit', "ProfilController@edit_profil")->name('profil.edit');
 Route::post('editprofil', "ProfilController@edit_profilPost")->name('editprofil');
 
 //setjadwal
-Route::get('setjadwal', "LoginController@setjadwal");
+Route::get('setjadwal', "LoginController@setjadwal")->name('setjadwal');
 
 //tambah mapel oleh guru
 Route::post('tambahmapelguru', "MapelController@tambah_mapel_guru")->name('tambahmapelguru');

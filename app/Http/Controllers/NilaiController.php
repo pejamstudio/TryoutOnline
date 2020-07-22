@@ -16,9 +16,12 @@ class NilaiController extends Controller
         else{
             $data = DB::table('nilai')
                     ->leftJoin('mapel', 'nilai.id_mapel', '=', 'mapel.id')
+                    ->leftJoin('kelas', 'mapel.id_kelas', '=', 'kelas.id')
                     ->leftJoin('siswa', 'nilai.id_siswa', '=', 'siswa.id')
+                    ->leftJoin('user AS user_siswa', 'user_siswa.id', '=', 'siswa.id_user')
                     ->leftJoin('guru', 'nilai.id_guru', '=', 'guru.id')
-                    ->select('nilai.id','mapel.nama_mapel', 'siswa.nisn', 'guru.nip', 'nilai.nilai');
+                    ->leftJoin('user AS user_guru', 'user_guru.id', '=', 'guru.id_user')
+                    ->select('nilai.id','mapel.nama_mapel', 'siswa.nisn', 'guru.nip', 'nilai.nilai', 'user_siswa.nama AS nama_siswa', 'user_guru.nama AS nama_guru', 'kelas.nama_kelas');
             $search = Session::get('search_nilai');
             if($search == 'all'){
                 $search = '';
@@ -83,6 +86,7 @@ class NilaiController extends Controller
                     ->leftJoin('mapel', 'mapel.id', '=', 'soal.id_mapel')
                     ->leftJoin('nilai', 'nilai.id_mapel', '=', 'mapel.id')
                     ->select('soal.soal', 'soal.jawab_a', 'soal.jawab_b', 'soal.jawab_c', 'soal.jawab_d', 'soal.jawab_e', 'soal.kunci', 'siswa_jawab.jawab')
+                    ->groupBy('soal.id')
                     ->where(['nilai.id' => $id])
                     ->get();
             $jumlah_benar = 0;

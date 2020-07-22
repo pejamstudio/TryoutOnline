@@ -55,11 +55,12 @@ class LoginController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        $dataDb = userModel::where(['username' => $request->username])->first();
+        $dataDb = DB::table('user')->where(['username' => $request->username])->first();
         if($dataDb){
             if(Hash::check($password, $dataDb->password)){
                 Session::put('name',$dataDb->nama);
                 Session::put('login',TRUE);
+                Session::put('id_userr',$dataDb->id);
                 $data = $dataDb->level_user;
                 Session::put('nama_pengguna', $dataDb->nama);
                 Session::put('foto', $dataDb->foto);
@@ -74,7 +75,7 @@ class LoginController extends Controller
                     return redirect('/dashboard');
                 }else if($data == 'S'){
                     Session::put('level', 'S');
-                    $id_siswa = siswaModel::where(['id_user' => $dataDb->id])->first();
+                    $id_siswa = DB::table('siswa')->where(['id_user' => $dataDb->id])->first();
                     Session::put('id-siswa', $id_siswa->id);
                     $id_kelas = DB::table('kelas_siswa')
                                 ->where(['id_siswa' => $id_siswa->id])

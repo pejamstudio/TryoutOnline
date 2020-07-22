@@ -82,6 +82,7 @@ class ProfilController extends Controller
     public function edit_profilPost(Request $request)
     {
     	$data = '';
+    	$file = $request->file('image');
     		if(Session::get('level') == 'A'){
 				$data = userModel::where(['level_user' => 'A'])->first();
 		    }else if (Session::get('level') == 'G') {
@@ -89,6 +90,12 @@ class ProfilController extends Controller
 		    	$data = userModel::where(['id' => $data_guru->id_user])->first();
 		    	$data->jenis_kelamin = $request->jenis_kelamin;
 		    	$data->tempat_lahir = $request->temp_lahir;
+		    	if($file != ''){
+		            $ext = $file->getClientOriginalExtension();
+		            $newName = rand(100000,1001238912)."_guru.".$ext;
+		            $file->move('assets/images/foto/guru',$newName);
+		            $data->foto = $newName;
+		        }
 
 		        $date = date('Y-m-d');
 		        $date = $request->tanggallahir;
@@ -99,19 +106,19 @@ class ProfilController extends Controller
 		    	$data = userModel::where(['id' => $data_siswa->id_user])->first();
 		    	$data->jenis_kelamin = $request->jenis_kelamin;
 		    	$data->tempat_lahir = $request->temp_lahir;
+		    	if($file != ''){
+		            $ext = $file->getClientOriginalExtension();
+		            $newName = rand(100000,1001238912)."_siswa.".$ext;
+		            $file->move('assets/images/foto/siswa',$newName);
+		            $data->foto = $newName;
+		        }
 
 		        $date = date('Y-m-d');
 		        $date = $request->tanggallahir;
 
 		        $data->tanggal_lahir = $date;
 		    }
-		$file = $request->file('image');
-        if($file != ''){
-            $ext = $file->getClientOriginalExtension();
-            $newName = rand(100000,1001238912)."_guru.".$ext;
-            $file->move('assets/images/foto/guru',$newName);
-            $data->foto = $newName;
-        }
+        
 		$data->nama = $request->nama;
 		$data->email = $request->email;
 		$data->username = $request->username;

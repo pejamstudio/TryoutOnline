@@ -217,7 +217,7 @@
                                                     }
                                                  ?>
                                                 for="gridRadios4">
-                                                    D. {{$s->jawab_e}}
+                                                    E. {{$s->jawab_e}}
                                                 </label>
                                                 <?php 
                                                     if($s->kunci == 'E')

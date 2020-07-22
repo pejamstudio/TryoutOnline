@@ -55,6 +55,7 @@ class MapelController extends Controller
                     ->select('mapel.id', 'mapel.nama_mapel', 'mapel.kkm', 'kelas.nama_kelas', 'user.nama')
                     ->where(['kelas_siswa.id_siswa' => Session::get('id-siswa')])->get();
                 $mapel = $mapel
+                        ->leftJoin('kelas_siswa', 'kelas_siswa.id_kelas', '=', 'kelas.id')
                         ->where(['kelas_siswa.id_siswa' => Session::get('id-siswa')])->get();
 		        $session = 'Siswa';
 		    }

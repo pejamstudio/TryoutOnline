@@ -1,26 +1,30 @@
 'use strict';
 $(document).ready(function () {
 
-    let today = new Date().toISOString().slice(0, 10);
-
+    let hari = new Date().toISOString().slice(0, 10);
+    var urlfull = window.location.href;
+    var pecahurl = urlfull.split('public/');
+    // console.log('url adalah = '+url);
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'listDay,listWeek,month'
+            right: 'listWeek,month'
         },
 
         views: {
-            listDay: {buttonText: 'list day'},
-            listWeek: {buttonText: 'list week'}
+            today: {buttonText: 'hari ini'},
+            listDay: {buttonText: 'list hari'},
+            listWeek: {buttonText: 'list minggu'},
+            month: {buttonText: 'list bulan'}
         },
 
         defaultView: 'month',
-        defaultDate: today,
+        defaultDate: hari,
         navLinks: true,
         editable: true,
         eventLimit: true,
-        events: '/setjadwal'
+        events: pecahurl[0]+'public/setjadwal'
     });
 
 });

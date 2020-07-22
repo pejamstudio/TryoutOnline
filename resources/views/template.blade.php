@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tryout Online - {{$session}}</title>
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" href="{{url('/assets/images/logo/logo.png')}}">
 
     <!-- begin::global styles -->
     <link rel="stylesheet" href="{{url('/assets/vendors/bundle.css')}}" type="text/css">
@@ -59,10 +61,10 @@
 <body class="">
 
 <!-- begin::page loader-->
-<div class="page-loader">
+<!-- <div class="page-loader">
     <div class="spinner-border"></div>
     <span>Loading</span>
-</div>
+</div> -->
 <!-- end::page loader -->
 
 
@@ -193,7 +195,7 @@
                             </div> -->
                             <ul class="list-group list-group-flush">
                                 <a href="{{route('profil')}}" class="list-group-item link-2">Profil</a>
-                                <a href="/logout" class="list-group-item text-danger">Logout</a>
+                                <a href="{{url('/logout')}}" class="list-group-item text-danger">Logout</a>
                             </ul>
                         </div>
                     </div>

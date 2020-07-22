@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\guruModel;
 use App\userModel;
+use App\soalModel;
 
 class ApiController extends Controller
 {
@@ -139,6 +140,32 @@ class ApiController extends Controller
 
         $data_response['siswa'] = $data;
         $data_response["response"] = 1;
+        $data_response["message"] = 'berhasil diload';
+
+        return response()->json($data_response);
+    }
+
+    public function load_jadwal(Request $request)
+    {
+        $data = DB::table('jadwal')
+                ->leftJoin('mapel', 'mapel.id', '=', 'jadwal.id_mapel')
+                ->leftJoin('kelas', 'kelas.id', '=', 'mapel.id_kelas')
+                ->select('jadwal.waktu', 'jadwal.tanggal', 'mapel.nama_mapel AS mapel', 'kelas.nama_kelas AS kelas', 'kelas.id')
+                ->where(['kelas.id' => $request->id_kelas])
+                ->get();
+        $data_response['jadwal'] = $data;
+        $data_response["response"] = true;
+        $data_response["message"] = 'berhasil diload';
+
+        return response()->json($data_response);
+    }
+
+    public function load_soal(Request $request)
+    {
+        $data = DB::table('soal')->where(['id_mapel' => $request->id_mapel])->get();
+
+        $data_response['soal'] = $data;
+        $data_response["response"] = true;
         $data_response["message"] = 'berhasil diload';
 
         return response()->json($data_response);

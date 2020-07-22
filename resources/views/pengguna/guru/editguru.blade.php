@@ -37,11 +37,11 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="nama">Nama</label>
-                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" required="" value="{{$guru1->nama}}" pattern="[0-9]{18}">
+                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" required="" value="{{$guru1->nama}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">NIP</label>
-                                        <input type="text" class="form-control" id="nama" name="nip" placeholder="Masukkan NIP" required="" value="{{$guru->nip}}">
+                                        <input type="text" class="form-control" id="nama" name="nip" placeholder="Masukkan NIP" required="" value="{{$guru->nip}}" pattern="[0-9]{18}">
                                     </div>
                                     <label for="nama">Jenis Kelamin</label>
                                     <div class="mb-2">

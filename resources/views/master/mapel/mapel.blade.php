@@ -25,20 +25,22 @@
         <div class="card">
             <div class="card-body">
             <div class="table-responsive">
-                <a  
-                    <?php 
-                        if ($session == 'Admin') {
-                            echo 'href="{{url("master/mapel/tambah")}}"';
-                        }
-                        else if($session == 'Guru')
-                        {
-                            echo 'href="" data-target="#pilihmapel" 
-                                        data-toggle="modal"';
-                        }
-                     ?>
-                    class="btn btn-primary">
-                    <i class="fa fa-plus-square m-r-5"></i> Tambah Mata Pelajaran
-                </a>
+                @if($session != 'Siswa')
+                    <a  
+                        <?php 
+                            if ($session == 'Admin') {
+                                echo 'href="{{url("master/mapel/tambah")}}"';
+                            }
+                            else if($session == 'Guru')
+                            {
+                                echo 'href="" data-target="#pilihmapel" 
+                                            data-toggle="modal"';
+                            }
+                         ?>
+                        class="btn btn-primary">
+                        <i class="fa fa-plus-square m-r-5"></i> Tambah Mata Pelajaran
+                    </a>
+                @endif
                 @if(\Session::has('alert'))
                     <div class="alert alert-danger">
                         <div>{{Session::get('alert')}}</div>
@@ -265,7 +267,11 @@
                                     @endforeach
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    @if(count($mapel_guru) == 0)
+                                        <p>Data mata pelajaran masih kosong. Hubungi admin untuk menambahkan</p>
+                                    @else
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    @endif
                                 </div>
                             </div>
                         </form>

@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <div class="container bg-white">
+    <div class="container bg-white" id="full">
 
         <!-- begin::page header -->
         <div class="page-header">
@@ -93,7 +93,7 @@
                     </div>
                 </div>
 
-                <div class="card sticky" >
+                <div class="card sticky">
                     <div class="card-header bg-primary">Navigasi Soal</div>
                     <div class="card-body">
                         <div><i class="ti-timer mr-2"></i>Waktu Tersisa : <span id="timer"></span></div>
@@ -111,7 +111,7 @@
 
 <script>
 
-var elem = document.getElementById("main-content");
+var elem = document.getElementById("full");
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
   } else if (elem.mozRequestFullScreen) { /* Firefox */
@@ -123,7 +123,7 @@ var elem = document.getElementById("main-content");
   }
 
 document.getElementById('timer').innerHTML =
-  <?php echo $mapel->durasi; ?> + ":" + 0;
+  <?php echo $waktu; ?> + ":" + 0;
 startTimer();
 
 function startTimer() {
@@ -134,7 +134,7 @@ function startTimer() {
   if(s==59){m=m-1}
   if(m<0){
     closeFullscreen();
-    window.location.replace("{{route('tryout')}}");
+    window.location.replace("{{url('submit', $mapel->id)}}");
   }
   
   document.getElementById('timer').innerHTML =

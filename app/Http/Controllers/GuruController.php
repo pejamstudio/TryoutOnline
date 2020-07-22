@@ -27,6 +27,7 @@ class GuruController extends Controller
                 $mapel = DB::table('mapel')
                     ->leftJoin('kelas', 'mapel.id_kelas', '=' ,'kelas.id')
                     ->select('mapel.id', 'kelas.nama_kelas', 'mapel.nama_mapel', 'mapel.id_guru')
+                    ->orderBy('kelas.nama_kelas', 'ASC')
                     ->get();
 
                 $search = Session::get('search_guru');
@@ -56,6 +57,7 @@ class GuruController extends Controller
             $mapel = DB::table('mapel')
                     ->leftJoin('kelas', 'mapel.id_kelas', '=' ,'kelas.id')
                     ->select('mapel.id', 'kelas.nama_kelas', 'mapel.nama_mapel', 'mapel.id_guru')
+                    ->orderBy('kelas.nama_kelas', 'ASC')
                     ->get();
 
             $session = '';
@@ -138,6 +140,7 @@ class GuruController extends Controller
             $mapel = DB::table('mapel')
                     ->leftJoin('kelas', 'mapel.id_kelas', '=' ,'kelas.id')
                     ->select('mapel.id', 'kelas.nama_kelas', 'mapel.nama_mapel', 'mapel.id_guru')
+                    ->orderBy('kelas.nama_kelas', 'ASC')
                     ->get();
 
             $session = '';

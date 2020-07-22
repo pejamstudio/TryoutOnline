@@ -28,19 +28,23 @@
                 <table id="example1" class="table table-striped table-bordered">
                     <thead>
                     <tr>
+                        <th>No</th>
                         <th>Mata Pelajaran</th>
                         <th>Guru</th>
                         <th>Siswa</th>
+                        <th>Kelas</th>
                         <th>Nilai</th>
                         <th>Aksi</th>
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $d)
+                        @foreach($data as $i => $d)
                             <tr>
+                                <td>{{$i+1}}</td>
                                 <td>{{$d->nama_mapel}}</td>
-                                <td>{{$d->nip}}</td>
-                                <td>{{$d->nisn}}</td>
+                                <td>{{$d->nama_guru}} ({{$d->nip}})</td>
+                                <td>{{$d->nama_siswa}} ({{$d->nisn}})</td>
+                                <td>{{$d->nama_kelas}}</td>
                                 <td>{{$d->nilai}}</td>
                                 <td class="text-center">
                                     <div class="dropdown">
@@ -59,9 +63,11 @@
                     </tbody>
                     <tfoot>
                     <tr>
+                        <th>No</th>
                         <th>Mata Pelajaran</th>
                         <th>Guru</th>
                         <th>Siswa</th>
+                        <th>Kelas</th>
                         <th>Nilai</th>
                         <th>Aksi</th>
                     </tr>

@@ -46,6 +46,7 @@
                 <table id="example1" class="table table-striped table-bordered">
                     <thead>
                     <tr>
+                        <th>No</th>
                         <th>Nama</th>
                         <th>NISN</th>
                         <th>Jurusan</th>
@@ -55,8 +56,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($data as $p)
+                    @foreach($data as $i => $p)
                         <tr>
+                            <td>{{$i+1}}</td>
                             <td>{{$p->nama}}</td>
                             <td>{{$p->nisn}}</td>
                             <td>{{$p->nama_jurusan}}</td>
@@ -90,6 +92,7 @@
                     </tbody>
                     <tfoot>
                     <tr>
+                        <th>No</th>
                         <th>Nama</th>
                         <th>NISN</th>
                         <th>Email</th>

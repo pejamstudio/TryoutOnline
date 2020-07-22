@@ -47,13 +47,14 @@ class TryoutController extends Controller
         }
     }
 
-    public function kerjakan_tryout()
+    public function kerjakan_tryout(Request $request)
     {
     	if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
         else{
-            $mapel = mapelModel::findOrFail(19);
+            $mapel = mapelModel::findOrFail($request->id_mapel);
+            $waktu = $request->waktu;
             $soal = soalModel::where(['id_mapel' => $mapel->id])->get();
             $session = '';
 
@@ -64,7 +65,7 @@ class TryoutController extends Controller
 		    }else if(Session::get('level') == 'S'){
 		        $session = 'Siswa';
 		    }
-    		return view('tryout/kerjakantryout', compact('mapel', 'soal', 'session'));
+    		return view('tryout/kerjakantryout', compact('mapel', 'soal', 'session', 'waktu'));
         }
     }
 
