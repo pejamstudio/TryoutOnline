@@ -72,31 +72,33 @@ class TryoutController extends Controller
     public function submit($id, Request $request)
     {
     	$siswa = Session::get('id-siswa');
-    	$mapel = mapelModel::findOrFail($id);
-    	$soal = soalModel::where(['id_mapel' => $id])->get();
-    	$benar = 0;
-    	foreach ($soal as $i => $s) {
-    		$data = new siswajawabModel();
+        $mapel = mapelModel::findOrFail($id);
+        $soal = soalModel::where(['id_mapel' => $id])->get();
+        $benar = 0;
+        foreach ($request->jawab as $jb) {
+            $data = new siswajawabModel();
 
-    		$data->id_siswa = $siswa;
-    		$data->id_soal = $s->id;
-    		$data->jawab = $request->jawab[$i];
-    		if($s->kunci == $request->jawab[$i])
-    		{
-    			$benar++;
-    		}
-    		$data->save();
-    	}
+            $data->id_siswa = $siswa;
+            $jwb = explode(',', $jb);
+            $data->id_soal = $jwb[1];
+            $data->jawab = $jwb[0];
+            $kunci = soalModel::where(['id' => $jwb[1]])->first();
+            if($kunci->kunci == $jwb[0])
+            {
+                $benar++;
+            }
+            $data->save();
+        }
 
-    	$nilai_akhir = $benar / count($soal) * 100;
-    	$nilai = new nilaiModel();
+        $nilai_akhir = $benar / count($soal) * 100;
+        $nilai = new nilaiModel();
 
-    	$nilai->id_siswa = $siswa;
-    	$nilai->id_mapel = $id;
-    	$nilai->id_guru = $mapel->id_guru;
-    	$nilai->nilai = $nilai_akhir;
+        $nilai->id_siswa = $siswa;
+        $nilai->id_mapel = $id;
+        $nilai->id_guru = $mapel->id_guru;
+        $nilai->nilai = $nilai_akhir;
 
-    	$nilai->save();
+        $nilai->save();
 
     	return redirect()->route('tryout');
     }

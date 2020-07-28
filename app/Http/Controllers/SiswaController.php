@@ -41,6 +41,7 @@ class SiswaController extends Controller
                 $data = $data->leftJoin('mapel', 'kelas_siswa.id_kelas', '=', 'mapel.id_kelas')
                             ->select('kelas_siswa.id', 'siswa.id_user','kelas.nama_kelas', 'jurusan.nama_jurusan', 'siswa.nisn', 'user.nama', 'user.telp')
                             ->where(['mapel.id_guru' => Session::get('id-guru')])
+                            ->orderBy('kelas.nama_kelas', 'ASC')
                             ->get();
 		        $session = 'Guru';
 		    }else if(Session::get('level') == 'S'){

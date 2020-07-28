@@ -39,7 +39,7 @@ class NilaiController extends Controller
 		        $session = 'Guru';
 		    }else if(Session::get('level') == 'S'){
                 $data = $data
-                        ->where(['siswa.id' => Session::get('id-siswa')])
+                        ->where(['siswa.id' => Session::get('id-siswa'), 'kelas.id' => Session::get('id-kelas')])
                         ->get();
 		        $session = 'Siswa';
 		    }

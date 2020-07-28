@@ -25,9 +25,10 @@ class ProfilController extends Controller
 				$data = $data->where(['level_user' => 'A'])->first();
 	        	$session = 'Admin';
 		    }else if (Session::get('level') == 'G') {
-		    	$data = $data->where(['user.id' => Session::get('id-guru')])
+		    	$data = $data
 		    			->leftJoin('guru', 'guru.id_user', '=', 'user.id')
 		    			->select('user.nama', 'user.foto', 'guru.nip', 'user.jenis_kelamin', 'user.alamat', 'user.tempat_lahir', 'user.tanggal_lahir', 'user.email', 'user.telp', 'user.username')
+		    			->where(['guru.id' => Session::get('id-guru')])
 		    			->first();
 		        $session = 'Guru';
 		    }else if(Session::get('level') == 'S'){
@@ -59,9 +60,10 @@ class ProfilController extends Controller
 				$data = $data->where(['level_user' => 'A'])->first();
 	        	$session = 'Admin';
 		    }else if (Session::get('level') == 'G') {
-		    	$data = $data->where(['user.id' => Session::get('id-guru')])
+		    	$data = $data
 		    			->leftJoin('guru', 'guru.id_user', '=', 'user.id')
 		    			->select('user.nama', 'user.foto', 'guru.nip', 'user.jenis_kelamin', 'user.alamat', 'user.tempat_lahir', 'user.tanggal_lahir', 'user.email', 'user.telp', 'user.username')
+		    			->where(['guru.id' => Session::get('id-guru')])
 		    			->first();
 		        $session = 'Guru';
 		    }else if(Session::get('level') == 'S'){

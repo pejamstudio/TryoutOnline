@@ -26,35 +26,35 @@
                             
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="jawab[{{$i}}]"
-                                       id="gridRadios1" value="A">
+                                       id="gridRadios1" value="A,{{$s->id}}">
                                 <label class="form-check-label" for="gridRadios1">
                                     A. {{$s->jawab_a}}
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="jawab[{{$i}}]"
-                                       id="gridRadios2" value="B">
+                                       id="gridRadios2" value="B,{{$s->id}}">
                                 <label class="form-check-label" for="gridRadios2">
                                     B. {{$s->jawab_b}}
                                 </label>
                             </div>
                             <div class="form-check disabled">
                                 <input class="form-check-input" type="radio" name="jawab[{{$i}}]"
-                                       id="gridRadios3" value="C">
+                                       id="gridRadios3" value="C,{{$s->id}}">
                                 <label class="form-check-label" for="gridRadios3">
                                     C. {{$s->jawab_c}}
                                 </label>
                             </div>
                             <div class="form-check disabled">
                                 <input class="form-check-input" type="radio" name="jawab[{{$i}}]"
-                                       id="gridRadios4" value="D">
+                                       id="gridRadios4" value="D,{{$s->id}}">
                                 <label class="form-check-label" for="gridRadios4">
                                     D. {{$s->jawab_d}}
                                 </label>
                             </div>
                             <div class="form-check disabled">
                                 <input class="form-check-input" type="radio" name="jawab[{{$i}}]"
-                                       id="gridRadios5" value="E">
+                                       id="gridRadios5" value="E,{{$s->id}}">
                                 <label class="form-check-label" for="gridRadios5">
                                     E. {{$s->jawab_e}}
                                 </label>

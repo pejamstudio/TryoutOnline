@@ -3,26 +3,31 @@
 use Illuminate\Http\Request;
 use App\user;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::post('login_user', "ApiController@login");
+Route::post('cek_level', "ApiController@cek_level");
 
-Route::get('read', function (){
-	return user::all();
-});
-
-Route::post('load_guru', "ApiController@read_guru");
-Route::post('create_guru', "ApiController@create_guru");
-Route::post('load_siswa_where_guru', "ApiController@load_siswa_where_guru");
 Route::post('profil_guru', "ApiController@profil_guru");
 Route::post('profil_siswa', "ApiController@profil_siswa");
-Route::post('load_nilai_where_guru', "ApiController@load_nilai_where_guru");
+Route::post('edit_profil_guru', "ApiController@edit_profil_guru");
+Route::post('edit_profil_siswa', "ApiController@edit_profil_siswa");
+
+Route::post('nilai_siswa',"ApiController@nilai_siswa");
+Route::post('nilai_guru',"ApiController@nilai_guru");
+Route::post('nilai_semua',"ApiController@nilai_semua");
+
+
+Route::post('mapel_guru', "ApiController@mapel_guru");
+Route::post('siswa_guru' , "ApiController@siswa_guru");
+
+Route::get('dashboard' , "ApiController@dashboard");
+Route::get('mapel_tersedia', "ApiController@mapel_tersedia");
+Route::post('tambah_mapel_diajukan', "ApiController@tambah_mapel_diajukan");
+
+
+Route::post('mapel_soal', "ApiController@mapel_soal");
+Route::post('tambah_soal', "ApiController@tambah_soal");
+Route::post('edit_soal', "ApiController@edit_soal");
+Route::post('delete_soal',"ApiController@delete_soal");
+
 Route::post('load_jadwal', "ApiController@load_jadwal");
-Route::post('load_soal', "ApiController@load_soal");
+Route::post('load_jadwal_guru', "ApiController@load_jadwal_guru");
