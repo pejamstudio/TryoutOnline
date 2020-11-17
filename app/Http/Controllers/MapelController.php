@@ -59,11 +59,6 @@ class MapelController extends Controller
                         ->where(['kelas_siswa.id_siswa' => Session::get('id-siswa')])->get();
 		        $session = 'Siswa';
 		    }
-            // $cek_kelas = true;
-            // if(count(kelasModel::all()) == count($data))
-            // {
-            //     $cek_kelas = false;
-            // }
             $mapel_guru = DB::table('mapel')
                         ->leftJoin('kelas', 'mapel.id_kelas', '=', 'kelas.id')
                         ->select('mapel.id', 'mapel.nama_mapel', 'kelas.nama_kelas')
@@ -89,7 +84,7 @@ class MapelController extends Controller
 		        $session = 'Siswa';
 		    }
 
-            $kelas = kelasModel::all();
+            $kelas = kelasModel::orderBy('nama_kelas', 'ASC')->get();
             $mapel = mapelModel::all();
 
             $guru = DB::table('guru')
@@ -255,8 +250,7 @@ class MapelController extends Controller
         }
     }
 
-    public function detail_mapel_soal($id)
-    {
+    public function detail_mapel_soal($id){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -284,8 +278,7 @@ class MapelController extends Controller
         }
     }
 
-    public function set_jadwal($id, Request $request)
-    {
+    public function set_jadwal($id, Request $request){
         $cek_jad = jadwalModel::where(['id_mapel' => $id])->first();
         $jadwal = new jadwalModel();
         if($cek_jad != null)
@@ -308,9 +301,7 @@ class MapelController extends Controller
         return redirect()->route('master.mapel')->with('alert-success', 'Berhasil menambahkan jadwal');
     }
 
-    public function tambah_mapel_guru(Request $request)
-    {
-
+    public function tambah_mapel_guru(Request $request){
         foreach ($request->mapelguru as $mg) {
             $mapel = mapelModel::where(['id' => $mg])->first();
             $mapel->id_guru = Session::get('id-guru');

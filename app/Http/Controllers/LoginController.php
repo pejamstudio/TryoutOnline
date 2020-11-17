@@ -35,7 +35,7 @@ class LoginController extends Controller
             }
 
             $kelas = count(kelasModel::all());
-            $mapel = count(mapelModel::all());
+            $mapel = count(mapelModel::groupBy('nama_mapel')->get());
             $guru = count(guruModel::all());
             $siswa = count(siswaModel::all());
             
@@ -132,13 +132,6 @@ class LoginController extends Controller
                 ->leftJoin('kelas', 'kelas.id', '=', 'mapel.id_kelas')
                 ->select('mapel.nama_mapel', 'jadwal.tanggal', 'jadwal.waktu', 'kelas.nama_kelas')
                 ->get();
-        // if(Session::get('level') == 'A'){
-            
-        // }else if (Session::get('level') == 'G') {
-            
-        // }else if(Session::get('level') == 'S'){
-            
-        // }
         $data = array();
         foreach ($jadwal as $j) {
             if($j->nama_mapel != '')

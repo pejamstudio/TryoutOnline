@@ -101,8 +101,7 @@ class SoalController extends Controller
         }
     }
 
-    public function edit_soalPost($id, Request $request)
-    {
+    public function edit_soalPost($id, Request $request){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -123,8 +122,7 @@ class SoalController extends Controller
         }
     }
 
-    public function delete_soal($id)
-    {
+    public function delete_soal($id){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }

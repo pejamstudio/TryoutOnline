@@ -106,7 +106,7 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="{{$m->id}}" name="mapel[]"
                                                     <?php 
-                                                        if($m->id_guru != 0)
+                                                        if($m->id_guru != null)
                                                         {
                                                             echo "disabled";
                                                         }

@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class ProfilController extends Controller
 {
-    public function profil()
-    {
+    public function profil(){
     	if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }

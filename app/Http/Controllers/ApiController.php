@@ -209,7 +209,7 @@ class ApiController extends Controller
         $data = DB::table('mapel')
                 ->leftJoin('kelas', 'mapel.id_kelas' , '=', 'kelas.id')
                 ->select('mapel.id' , 'mapel.nama_mapel', 'kelas.nama_kelas')
-                ->where(['mapel.id_guru' => ""])
+                ->where(['mapel.id_guru' => null])
                 ->orderBy('kelas.nama_kelas')
                 ->get();
         if($data->count() != 0){
@@ -515,10 +515,15 @@ class ApiController extends Controller
                 ->select('jadwal.waktu', 'jadwal.tanggal', 'mapel.nama_mapel AS mapel', 'mapel.id AS id_mapel', 'kelas.nama_kelas AS kelas', 'user.id', 'mapel.durasi' , 'nilai.nilai')
                 ->where(['user.id' => $request->id])
                 ->get();
-        $data_response["response"] = true;
-        $data_response["message"] = 'berhasil diload';
-        $data_response['jadwal'] = $data;
-
+        if($data->count() != 0){
+            $data_response["response"] = true;
+            $data_response["message"] = 'berhasil diload';
+            $data_response['jadwal'] = $data;
+        }else{
+            $data_response["response"] = false;
+            $data_response["message"] = 'data kosong';
+        }
+        
         return response()->json($data_response);
     }
 

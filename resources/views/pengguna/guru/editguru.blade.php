@@ -107,13 +107,12 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox" value="{{$m->id}}" name="mapel[]"
                                                     <?php 
-                                                        if($m->id_guru != null && $session == 'Guru')
-                                                        {
-                                                            echo "disabled";
-                                                        }
-                                                        else if($m->id_guru != null && $session == 'Admin')
+                                                        if($m->id_guru == $id)
                                                         {
                                                             echo "checked";
+                                                        }
+                                                        elseif ($m->id_guru != $id && $m->id_guru != null) {
+                                                            echo "disabled";
                                                         }
                                                      ?>
                                                     >

@@ -15,8 +15,7 @@ use File;
 
 class SiswaController extends Controller
 {
-    public function pengguna_siswa()
-    {
+    public function pengguna_siswa(){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -35,6 +34,7 @@ class SiswaController extends Controller
 
 			if(Session::get('level') == 'A'){
                 $data = $data->select('kelas_siswa.id', 'siswa.id_user','kelas.nama_kelas', 'jurusan.nama_jurusan', 'siswa.nisn', 'user.nama', 'user.telp')
+                    ->orderBy('kelas.nama_kelas', 'ASC')
                     ->get();
 	        	$session = 'Admin';
 		    }else if (Session::get('level') == 'G') {
@@ -157,8 +157,7 @@ class SiswaController extends Controller
         }
     }
 
-    public function edit_siswaPost($id, Request $request)
-    {
+    public function edit_siswaPost($id, Request $request){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -228,8 +227,7 @@ class SiswaController extends Controller
         }
     }
 
-    public function hapus_siswa($id)
-    {
+    public function hapus_siswa($id){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }

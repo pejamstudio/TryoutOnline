@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class NilaiController extends Controller
 {
-    public function nilai()
-    {
+    public function nilai(){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }

@@ -29,7 +29,9 @@
                     <a  
                         <?php 
                             if ($session == 'Admin') {
-                                echo 'href="{{url("master/mapel/tambah")}}"';
+                        ?>
+                                href="{{url('master/mapel/tambah')}}";
+                        <?php
                             }
                             else if($session == 'Guru')
                             {
@@ -101,10 +103,10 @@
                                         <?php
                                             }
                                          ?>
-                                         <a href=""
+                                         <a href="#"
                                         data-target="#data_soal" 
                                         data-toggle="modal"
-                                        data-id="{{$p->nama_mapel}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Soal</button></a>
+                                        data-id="{{ $p->nama_mapel}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Soal</button></a>
                                         <!-- <a href="{{url('master/mapel/datasoal', $p->id)}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Soal</button></a> -->
                                         <?php 
                                             if ($session == 'Admin' ) {
@@ -163,14 +165,17 @@
                         <div class="form-group">
                             <label for="nama">Kelas</label>
                             <div class="mb-2">
-                                @foreach($mapel as $i => $d)
+                                <p id="sx">
+                                    <p id="tx"></p>
+                                </p>
+                                <!-- @foreach($mapel as $i => $d)
                                     @if($d->nama_mapel == $p->nama_mapel)
                                         <a href="#jadwal{{$d->id}}"
                                         data-target="#jadwal{{$d->id}}" 
                                         data-toggle="modal" 
                                         data-id="{{$d->id}}"><button class="form-control">{{$d->nama_kelas}}</button></a><br>
                                     @endif
-                                @endforeach
+                                @endforeach -->
                             </div>
                         </div>
                     </div>
@@ -217,6 +222,7 @@
             </div>
         </div>
         @endforeach
+
         <div class="modal fade" id="data_soal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -230,11 +236,9 @@
                         <div class="form-group">
                             <label for="nama">Kelas</label>
                             <div class="mb-2">
-                                @foreach($mapel as $i => $d)
-                                    @if($d->nama_mapel == $p->nama_mapel)
-                                        <a href="{{url('master/mapel/datasoal', $d->id)}}"><button class="form-control">{{$d->nama_kelas}}</button></a><br>
-                                    @endif
-                                @endforeach
+                                <p id="x">
+                                    <p id="y"></p>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -282,4 +286,51 @@
 
     </div>
 
+@stop
+
+@section('script')
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script>
+            $(document).ready(function () {
+                $("#data_soal").on("show.bs.modal", function (e) {
+                    var nama = $(e.relatedTarget).data('id');
+                    var data = <?php echo json_encode($mapel) ?>;
+                    $.each(data, function() {
+                        if (this.nama_mapel == nama) {
+                            var url = '{{ url("master/mapel/datasoal") }}';
+                            $('#y').append(
+                                '<a href="'+url+'/'+this.id+'"><button class="form-control">'+this.nama_kelas+'</button></a><br>'
+                            );
+                        }
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $("#data_soal").on("hide.bs.modal", function (e) {
+                    $('#y').remove();
+                    $('#x').append('<p id="y"></p>');
+                });
+            });
+
+            $(document).ready(function () {
+                $("#setjadwal").on("show.bs.modal", function (e) {
+                    var nama = $(e.relatedTarget).data('id');
+                    var data = <?php echo json_encode($mapel) ?>;
+                    console.log(data);
+                    $.each(data, function() {
+                        if (this.nama_mapel == nama) {
+                            $('#tx').append(
+                                '<a href="#jadwal'+this.id+'" data-target="#jadwal'+this.id+'" data-toggle="modal" data-id="'+this.id+'"><button class="form-control">'+this.nama_kelas+'</button></a><br>'
+                            );
+                        }
+                    });
+                });
+            });
+            $(document).ready(function () {
+                $("#setjadwal").on("hide.bs.modal", function (e) {
+                    $('#tx').remove();
+                    $('#sx').append('<p id="tx"></p>');
+                });
+            });
+    </script>
 @stop

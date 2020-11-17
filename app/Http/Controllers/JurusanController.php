@@ -49,8 +49,7 @@ class JurusanController extends Controller
         }
     }
 
-    public function tambah_jurusanPost(Request $request)
-    {
+    public function tambah_jurusanPost(Request $request){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -87,8 +86,7 @@ class JurusanController extends Controller
         }
     }
 
-    public function edit_jurusanPost($id, Request $request)
-    {
+    public function edit_jurusanPost($id, Request $request){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -100,12 +98,10 @@ class JurusanController extends Controller
             $data1->save();
 
             return redirect()->route('master.jurusan.jurusan')->with('alert-success', 'Berhasil diperbaharui!');
-        }
-        
+        }        
     }
 
-    public function delete_jurusan($id)
-    {
+    public function delete_jurusan($id){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -116,8 +112,7 @@ class JurusanController extends Controller
         }
     }
 
-    public function detail_jurusan($id)
-    {
+    public function detail_jurusan($id){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }

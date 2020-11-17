@@ -12,29 +12,28 @@ use Illuminate\Support\Facades\Session;
 
 class GuruController extends Controller
 {
-    public function pengguna_guru()
-    {
+    public function pengguna_guru(){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
         else{
-                $data = DB::table('user')
-                        ->where(['level_user' => 'G'])
-                        ->leftJoin('guru', 'user.id', '=', 'guru.id_user')
-                        ->select('guru.id', 'guru.id_user','guru.nip', 'user.nama', 'user.email', 'user.jenis_kelamin', 'user.telp')
-                        ->get();
-
-                $mapel = DB::table('mapel')
-                    ->leftJoin('kelas', 'mapel.id_kelas', '=' ,'kelas.id')
-                    ->select('mapel.id', 'kelas.nama_kelas', 'mapel.nama_mapel', 'mapel.id_guru')
-                    ->orderBy('kelas.nama_kelas', 'ASC')
+            $data = DB::table('user')
+                    ->where(['level_user' => 'G'])
+                    ->leftJoin('guru', 'user.id', '=', 'guru.id_user')
+                    ->select('guru.id', 'guru.id_user','guru.nip', 'user.nama', 'user.email', 'user.jenis_kelamin', 'user.telp')
                     ->get();
 
-                $search = Session::get('search_guru');
-                if($search == 'all'){
-                    $search = '';
-                }
-                $session = '';
+            $mapel = DB::table('mapel')
+                ->leftJoin('kelas', 'mapel.id_kelas', '=' ,'kelas.id')
+                ->select('mapel.id', 'kelas.nama_kelas', 'mapel.nama_mapel', 'mapel.id_guru')
+                ->orderBy('kelas.nama_kelas', 'ASC')
+                ->get();
+
+            $search = Session::get('search_guru');
+            if($search == 'all'){
+                $search = '';
+            }
+            $session = '';
 
             if(Session::get('level') == 'A'){
                 $session = 'Admin';
@@ -44,7 +43,7 @@ class GuruController extends Controller
                 $session = 'Siswa';
             }
 
-                return view('pengguna/guru/guru', compact('data', 'search', 'mapel', 'session'));
+            return view('pengguna/guru/guru', compact('data', 'search', 'mapel', 'session'));
         }
     }
 
@@ -126,8 +125,7 @@ class GuruController extends Controller
         return redirect()->route('pengguna.guru')->with('alert-success','Data berhasil ditambahkan!');
     }
 
-    public function edit_guru($id)
-    {
+    public function edit_guru($id){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
         }
@@ -153,12 +151,11 @@ class GuruController extends Controller
                 $session = 'Siswa';
             }
 
-            return view('pengguna/guru/editguru', compact('guru', 'guru1', 'mapel', 'session'));
+            return view('pengguna/guru/editguru', compact('guru', 'guru1', 'mapel', 'id', 'session'));
         }
     }
 
-    public function edit_guruPost($id, Request $request)
-    {
+    public function edit_guruPost($id, Request $request){
         $data_guru = guruModel::where(['id' => $id])->first();
         $data = userModel::where(['id' => $data_guru->id_user])->first();
 

@@ -61,7 +61,6 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a href="{{url('master/detailkelas', $p->nama_kelas)}}"><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Siswa</button></a>
-                                        <a href=""><button class="dropdown-item" type="button"><i class="ti-info mr-3"></i>Data Jadwal</button></a>
                                         <a href="{{route('master.kelas.edit', $p->id)}}"><button class="dropdown-item" type="button"><i class="ti-pencil mr-3"></i>Edit</button></a>
                                         <form method="post" action="{{url('master/hapuskelas', $p->id)}}">
                                             @csrf

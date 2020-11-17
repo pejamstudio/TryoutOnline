@@ -218,6 +218,8 @@
     @yield('content')
 
 </main>
+
+    @yield('script')
 <!-- end::main content -->
 
 <!-- begin::global scripts -->

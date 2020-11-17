@@ -26,18 +26,18 @@ class KelasController extends Controller
 
             $session = '';
 
-			if(Session::get('level') == 'A'){
-	        	$session = 'Admin';
-		    }else if (Session::get('level') == 'G') {
-		        $session = 'Guru';
-		    }else if(Session::get('level') == 'S'){
-		        $session = 'Siswa';
-		    }
+    		if(Session::get('level') == 'A'){
+            	$session = 'Admin';
+    	    }else if (Session::get('level') == 'G') {
+    	        $session = 'Guru';
+    	    }else if(Session::get('level') == 'S'){
+    	        $session = 'Siswa';
+    	    }
 
             return view('master/kelas/kelas', compact('data', 'id', 'session'));
         }
     }
-    
+
     public function tambah_kelas(){
         if(!Session::get('login')){
             return redirect('/')->with('alert','Kamu harus login dulu');
@@ -48,13 +48,13 @@ class KelasController extends Controller
 
             $session = '';
 
-			if(Session::get('level') == 'A'){
-	        	$session = 'Admin';
-		    }else if (Session::get('level') == 'G') {
-		        $session = 'Guru';
-		    }else if(Session::get('level') == 'S'){
-		        $session = 'Siswa';
-		    }
+    		if(Session::get('level') == 'A'){
+            	$session = 'Admin';
+    	    }else if (Session::get('level') == 'G') {
+    	        $session = 'Guru';
+    	    }else if(Session::get('level') == 'S'){
+    	        $session = 'Siswa';
+    	    }
 
             return view('master/kelas/tambahkelas', compact('data','id', 'session'));
         }
@@ -84,18 +84,17 @@ class KelasController extends Controller
             $data = kelasModel::findOrFail($id);
             $jurusan = jurusanModel::findOrFail($data->id_jurusan);
             $data1 = jurusanModel::all();
-
             $id = Session::get('nama_jurusan');
 
             $session = '';
 
-			if(Session::get('level') == 'A'){
-	        	$session = 'Admin';
-		    }else if (Session::get('level') == 'G') {
-		        $session = 'Guru';
-		    }else if(Session::get('level') == 'S'){
-		        $session = 'Siswa';
-		    }
+    		if(Session::get('level') == 'A'){
+            	$session = 'Admin';
+    	    }else if (Session::get('level') == 'G') {
+    	        $session = 'Guru';
+    	    }else if(Session::get('level') == 'S'){
+    	        $session = 'Siswa';
+    	    }
 
             return view('master/kelas/editkelas', compact('data', 'jurusan' ,'data1', 'id', 'session'));
         }
